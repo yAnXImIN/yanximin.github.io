@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Java 反射机制初探 | 无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java">
+    <meta name="description" content="Java 反射机制反射(Reflect)是Java语言中的重要的特性. Java框架中的绝大多数都使用了反射. 理解框架必须要精通反射的实现和原理. 在java.lang.reflect中, Java提供了一些列反射的类. 其中, 最常用的几个类分别为Class(这个类在java.lang包下), Method, Field, Constructor. 从字面意思上来看, 上面几个类分别对应了Ja">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 反射机制初探">
+<meta property="og:url" content="http://blog.yanximin.site/2017/08/04/reflect-1/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="Java 反射机制反射(Reflect)是Java语言中的重要的特性. Java框架中的绝大多数都使用了反射. 理解框架必须要精通反射的实现和原理. 在java.lang.reflect中, Java提供了一些列反射的类. 其中, 最常用的几个类分别为Class(这个类在java.lang包下), Method, Field, Constructor. 从字面意思上来看, 上面几个类分别对应了Ja">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-04-08T13:13:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 反射机制初探">
+<meta name="twitter:description" content="Java 反射机制反射(Reflect)是Java语言中的重要的特性. Java框架中的绝大多数都使用了反射. 理解框架必须要精通反射的实现和原理. 在java.lang.reflect中, Java提供了一些列反射的类. 其中, 最常用的几个类分别为Class(这个类在java.lang包下), Method, Field, Constructor. 从字面意思上来看, 上面几个类分别对应了Ja">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Java 反射机制初探</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Java 反射机制初探</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-08-04T00:29:02.000Z" itemprop="datePublished" class="page-time">
+  2017-08-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+   
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Java-反射机制"><span class="post-toc-number">1.</span> <span class="post-toc-text">Java 反射机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Class"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Class</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Constructor"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Constructor</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Method"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Method</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Field"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Field</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-reflect-1"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Java 反射机制初探</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-04 08:29:02" datetime="2017-08-04T00:29:02.000Z"  itemprop="datePublished">2017-08-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Java-反射机制"><a href="#Java-反射机制" class="headerlink" title="Java 反射机制"></a>Java 反射机制</h2><p>反射(Reflect)是Java语言中的重要的特性. Java框架中的绝大多数都使用了反射. 理解框架必须要精通反射的实现和原理. 在<code>java.lang.reflect</code>中, Java提供了一些列反射的类. 其中, 最常用的几个类分别为<code>Class</code>(这个类在<code>java.lang</code>包下), <code>Method</code>, <code>Field</code>, <code>Constructor</code>. 从字面意思上来看, 上面几个类分别对应了Java语言中的类, 方法, 字段, 构造方法. 通过学习使用这几个类, 可以让我们了解Java反射的过程和使用.  </p>
+<h3 id="Class"><a href="#Class" class="headerlink" title="Class"></a><code>Class</code></h3><p><code>Class</code>在<code>java.lang</code>, 在Java文档中,对<code>Class</code>类的描述如下</p>
+<blockquote>
+<p>Instances of the class Class represent classes and interfaces in a running Java application. An enum is a kind of class and an annotation is a kind of interface. Every array also belongs to a class that is reflected as a Class object that is shared by all arrays with the same element type and number of dimensions. The primitive Java types (boolean, byte, char, short, int, long, float, and double), and the keyword void are also represented as Class objects.<br>Class has no public constructor. Instead Class objects are constructed automatically by the Java Virtual Machine as classes are loaded and by calls to the defineClass method in the class loader.  </p>
+</blockquote>
+<p>从上面我们可以看到<code>Class</code>是Java类的对象. 从<code>Class</code>的实例中, 我们可以操纵Java指定的类. 而且<code>Class</code>类没有构造函数, 只能从一些特定途径生成类对象.</p>
+<p>下面代码展示了如何获取一个类对象,首先我们声明一个<code>Student</code>类, 该类是一个普通的类. 下面的所有代码不外加说明的话, 都在此类的基础上展开.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> reflect;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> sId;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> sName;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getsId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> sId;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setsId</span><span class="params">(<span class="keyword">int</span> sId)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.sId = sId;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getsName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> sName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setsName</span><span class="params">(<span class="keyword">int</span> sName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.sName = sName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"play"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> id)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.sId = id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> sname)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.sId = id;</span><br><span class="line">		<span class="keyword">this</span>.sName = sname;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用类全称获取类对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class clazz = Class.forName(<span class="string">"reflect.Student"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用类名获取类对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class clazz = Student.class</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用实例获得类对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student s = <span class="keyword">new</span> Student();</span><br><span class="line">Class clazz = s.getClass();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述三种方式都可以获取<code>Student</code>的<code>Class</code>对象. 目前来说, 第一种使用类名的字符串获取类对象更加常用.</p>
+<p>在一个类对象中有一个方法特别值得注意:<code>newInstance()</code>. 这个方法从字面上就可以很好理解: 产生一个该类的实例.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Class clazz = Class.forName(<span class="string">"reflect.Student"</span>);</span><br><span class="line">Object o = clazz.newInstance();</span><br></pre></td></tr></table></figure></p>
+<p>但是这个方法只能调用无参构造函数. 当需要调用带参构造函数时或者类中没有无参构造函数时, 就不能用了. 幸好Java提供了<code>Constructor</code>类去调用其他的构造函数. </p>
+<h3 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a><code>Constructor</code></h3><p><code>Constructor</code>在<code>java.lang.reflect</code>包中. 在Java文档中,对<code>Constructor</code>类的描述如下</p>
+<blockquote>
+<p>Constructor provides information about, and access to, a single constructor for a class.<br>Constructor permits widening conversions to occur when matching the actual parameters to newInstance() with the underlying constructor’s formal parameters, but throws an IllegalArgumentException if a narrowing conversion would occur.  </p>
+</blockquote>
+<p>正如上面所说, <code>Constructor</code>是为了解决调用带参构造函数的时候使用, 当然它也可以用来调用无参构造函数. <code>Constructor</code>相当于<code>Class</code>中的<code>newInstance()</code>函数的升级版本.<br>具体用法如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Constructor[] constructors = clazz.getConstructors();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;constructors.length;i++)&#123;</span><br><span class="line">	Method getIdMethod = clazz.getMethod(<span class="string">"getsId"</span>);</span><br><span class="line">	System.out.println(constructors[i].getName()+<span class="string">" "</span>+constructors[i].getParameterCount());</span><br><span class="line">	<span class="keyword">if</span>(constructors[i].getParameterCount()==<span class="number">0</span>)&#123;</span><br><span class="line">		Object o = constructors[i].newInstance();</span><br><span class="line">		System.out.println(getIdMethod.invoke(o));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(constructors[i].getParameterCount()==<span class="number">1</span>)&#123;</span><br><span class="line">		Object o = constructors[i].newInstance(<span class="number">1</span>);</span><br><span class="line">		System.out.println(getIdMethod.invoke(o));</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		Object o = constructors[i].newInstance(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">		System.out.println(getIdMethod.invoke(o));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a><code>Method</code></h3><p><code>Method</code>在<code>java.lang.reflect</code>包中. 在Java文档中,对<code>Method</code>类的描述如下:</p>
+<blockquote>
+<p>A Method provides information about, and access to, a single method on a class or interface. The reflected method may be a class method or an instance method (including an abstract method).<br>A Method permits widening conversions to occur when matching the actual parameters to invoke with the underlying method’s formal parameters, but it throws an IllegalArgumentException if a narrowing conversion would occur.</p>
+</blockquote>
+<p><code>Method</code>类是对Java类方法的抽象. 具体使用方法和示例代码如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Method playMethod = clazz.getMethod(<span class="string">"play"</span>);</span><br><span class="line">playMethod.invoke(clazz.newInstance());		</span><br><span class="line">Method[] allMethod = clazz.getDeclaredMethods();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;allMethod.length;i++)&#123;</span><br><span class="line">	System.out.println(allMethod[i].getName()+<span class="string">" "</span>+allMethod[i].getParameterCount());</span><br><span class="line">&#125;	</span><br><span class="line">Method sayMethod = clazz.getDeclaredMethod(<span class="string">"say"</span>);</span><br><span class="line">sayMethod.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">sayMethod.invoke(clazz.newInstance());</span><br><span class="line">sayMethod.setAccessible(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure></p>
+<p>注意到这句话<code>sayMethod.setAccessible(true)</code>, 目的是让调用者有权限去执行类中的非public方法(或者权限不够的方法).</p>
+<h3 id="Field"><a href="#Field" class="headerlink" title="Field"></a><code>Field</code></h3><p><code>Field</code>在<code>java.lang.reflect</code>包中. 在Java文档中,对<code>Field</code>类的描述如下:</p>
+<blockquote>
+<p>A Field provides information about, and dynamic access to, a single field of a class or an interface. The reflected field may be a class (static) field or an instance field.<br>A Field permits widening conversions to occur during a get or set access operation, but throws an IllegalArgumentException if a narrowing conversion would occur.  </p>
+</blockquote>
+<p><code>Field</code>类是对Java类字段的抽象. 具体使用方法和示例代码如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Field[] fields = clazz.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;fields.length;i++)&#123;</span><br><span class="line">	System.out.println(fields[i].getName());</span><br><span class="line">&#125;	</span><br><span class="line">Object o = clazz.newInstance();</span><br><span class="line">Method m = clazz.getMethod(<span class="string">"setsId"</span>, <span class="keyword">int</span>.class);</span><br><span class="line">System.out.println(m.getName());</span><br><span class="line">m.invoke(o, <span class="number">1</span>);</span><br><span class="line">Field sidField = clazz.getDeclaredField(<span class="string">"sId"</span>);</span><br><span class="line">System.out.println(sidField.getInt(o));</span><br></pre></td></tr></table></figure></p>
+<p>以上就是Java反射中的四个比较重要和基础的类. <code>reflect</code>包中还有许多重要的类, 比方说AOP的实现工具<code>InvocationHandler</code>动态代理等等.  理解基本的反射工具可以让我们更好地了解Java语言的特性和Java框架的原理.</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    post.last_updated<time datetime="2018-04-08T13:13:49.000Z" itemprop="dateUpdated">2018-04-08 21:13:49</time>
+</span><br>
+
+
+        
+        欢迎大家在这里留言
+        
+    </div>
+    <footer>
+        <a href="http://blog.yanximin.site">
+            <img src="/img/avatar.jpg" alt="Yan Ximin">
+            Yan Ximin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/08/04/reflect-1/&title=《Java 反射机制初探》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/08/04/reflect-1/&title=《Java 反射机制初探》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/08/04/reflect-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java 反射机制初探》 — 无名小站&url=http://blog.yanximin.site/2017/08/04/reflect-1/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/08/04/reflect-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/08/java-nio/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java nio</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/01/mark-down-for-vscode/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">vscode中使用markdown</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'yAnXImIN',
+            repo: 'comment',
+            oauth: {
+                client_id: 'd12ac644c848fe45ce25',
+                client_secret: '2ee4aedb93051099e9f98294e64026da546d8a58',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/08/04/reflect-1/&title=《Java 反射机制初探》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/08/04/reflect-1/&title=《Java 反射机制初探》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/08/04/reflect-1/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Java 反射机制初探》 — 无名小站&url=http://blog.yanximin.site/2017/08/04/reflect-1/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/08/04/reflect-1/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3a0W6rMBAE0Pz/T9PXe6WGzKxJJczxU9VQ8EmlFbvj1ytexz8r+fR4s/K/en1jYWBg3JZxnK7zB1x7Tf51/ELFwMB4AONdBUuuaTeXPyvZGwYGBsa7a87L4qy8YmBgYFzFKG5dll0MDAyMc0bSxF47njsfun2xF8fAwLghI9/W3//8lXwDAwPjVoyjXEkAmYcBKzv5754YGBhbM/ICl4SLK0HmrNHFwMB4GiMfbOXHMmaDvPZLwcDA2JuxXvLaaGEWc34AY2BgbM3IW8rkyMX64CzfKAYGxjMZK21nfthiNrAr/g8YGBibMpIAYCUSmDXA7ZeFgYGxK2NW8j5M7xYOagxHdRgYGA9jrA+8ks3NGuMPU0MMDIxNGVcFk23zOcMUvTgGBsZGjLykFiUvftVrj3dEOQYGBsZ2jDzVbLcyG8zlg7ao7GJgYGzByJvMWWyQ3D9nv70SAwNja8bswFYbCbTHOPLfY2BgPI3RjuNXSnD7OlifHMHAwNiOkTexs6iyHerlkcOwF8fAwLgtY+XVrY0nv3EfDAyMJzBmceNVjWt7fwwMjOcwjnK10WNbapf6bwwMjE0ZbTDQHolYiSfbwxkYGBh7My5oIOP5/Kw9XmpiMTAwNmLkhW/2aRs8DHtxDAwMjLIstsc12jgBAwMDY/aAvAGevSx+aGIxMDC2ZiSlMGlQ8+Nieet78bgNAwPjhoy2dUy21b5Q5sc1lkJNDAyM+zF+ANG5apjcnCQFAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

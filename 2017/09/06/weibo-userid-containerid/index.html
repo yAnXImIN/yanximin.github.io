@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>微博用户标识详解 | 无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="爬虫">
+    <meta name="description" content="微博用户标识详解微博用户id微博主要用三种手段标注用户:    用户昵称: 显示在页面的名字 用户名: 系统中用户的名字 用户Id: 系统中用户的ID编号  其中用户昵称是可以修改的, 剩下两个不可修改. 比方说吾爱破解论坛这个微博用户(http://weibo.com/52pojie),如下图所示:其昵称为吾爱破解论坛, 用户名为52pojie, 用户ID为1780478695. 无论要抓取的微">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微博用户标识详解">
+<meta property="og:url" content="http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="微博用户标识详解微博用户id微博主要用三种手段标注用户:    用户昵称: 显示在页面的名字 用户名: 系统中用户的名字 用户Id: 系统中用户的ID编号  其中用户昵称是可以修改的, 剩下两个不可修改. 比方说吾爱破解论坛这个微博用户(http://weibo.com/52pojie),如下图所示:其昵称为吾爱破解论坛, 用户名为52pojie, 用户ID为1780478695. 无论要抓取的微">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/a1ee729cly1fj8teyk66fj20ri08bmyg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/a1ee729cly1fj9uszqk7wj21gv0qmdh7.jpg">
+<meta property="og:updated_time" content="2018-04-08T13:13:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微博用户标识详解">
+<meta name="twitter:description" content="微博用户标识详解微博用户id微博主要用三种手段标注用户:    用户昵称: 显示在页面的名字 用户名: 系统中用户的名字 用户Id: 系统中用户的ID编号  其中用户昵称是可以修改的, 剩下两个不可修改. 比方说吾爱破解论坛这个微博用户(http://weibo.com/52pojie),如下图所示:其昵称为吾爱破解论坛, 用户名为52pojie, 用户ID为1780478695. 无论要抓取的微">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/a1ee729cly1fj8teyk66fj20ri08bmyg.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">微博用户标识详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">微博用户标识详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-05T19:15:27.000Z" itemprop="datePublished" class="page-time">
+  2017-09-06
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+   
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#微博用户标识详解"><span class="post-toc-number">1.</span> <span class="post-toc-text">微博用户标识详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#微博用户id"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">微博用户id</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用户containerId"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">用户containerId</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#各种Id相互转换的代码"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">各种Id相互转换的代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#uid转contianerId"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">uid转contianerId</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#昵称转contianerId"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">昵称转contianerId</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用户名转contianerId"><span class="post-toc-number">1.3.3.</span> <span class="post-toc-text">用户名转contianerId</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-weibo-userid-containerid"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">微博用户标识详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-06 03:15:27" datetime="2017-09-05T19:15:27.000Z"  itemprop="datePublished">2017-09-06</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="微博用户标识详解"><a href="#微博用户标识详解" class="headerlink" title="微博用户标识详解"></a>微博用户标识详解</h1><h2 id="微博用户id"><a href="#微博用户id" class="headerlink" title="微博用户id"></a>微博用户id</h2><p>微博主要用三种手段标注用户:  </p>
+<ul>
+<li>用户昵称: 显示在页面的名字</li>
+<li>用户名: 系统中用户的名字</li>
+<li>用户Id: 系统中用户的ID编号</li>
+</ul>
+<p>其中用户昵称是可以修改的, 剩下两个不可修改.</p>
+<p>比方说<code>吾爱破解论坛</code>这个微博用户(<a href="http://weibo.com/52pojie),如下图所示" target="_blank" rel="noopener">http://weibo.com/52pojie),如下图所示</a>:<br><img src="http://ww1.sinaimg.cn/large/a1ee729cly1fj8teyk66fj20ri08bmyg.jpg" alt=""><br>其昵称为<code>吾爱破解论坛</code>, 用户名为<code>52pojie</code>, 用户ID为<code>1780478695</code>.</p>
+<p>无论要抓取的微博链接是以用户昵称还是用户名作为标识的, 我们最后都要将其转化为用户ID, 方便后续的处理.</p>
+<h2 id="用户containerId"><a href="#用户containerId" class="headerlink" title="用户containerId"></a>用户containerId</h2><p>通过用户的特定<code>containerId</code>, 我们可以任意一个用户的信息. 比方说其所有发布过的微博和关注好友列表等.</p>
+<p>如果只要抓取一个用户所发布的所有微博的话, 则<code>containerId</code>等于<code>107603+UID</code>.<br>比如我们要抓取<code>吾爱破解论坛</code>的微博,则其对应的<code>containerId</code>为<code>1076031780478695</code>.</p>
+<p>我们访问以下的链接, 就可以获取到用户的前25条微博.</p>
+<blockquote>
+<p><a href="https://m.weibo.cn/api/container/getIndex?page=1&amp;count=25&amp;containerid=1076031780478695" target="_blank" rel="noopener">https://m.weibo.cn/api/container/getIndex?page=1&amp;count=25&amp;containerid=1076031780478695</a></p>
+</blockquote>
+<p>结果如下所示:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ww1.sinaimg.cn/mw690/a1ee729cly1fj9uszqk7wj21gv0qmdh7.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>从上面我们可以看到, 用户所发的微博已经全部显示在JSON文件之中了, 我们可以根据自己的需求获取到相应的内容.</p>
+<ul>
+<li>用户昵称 screen_name</li>
+<li>用户ID user.id</li>
+<li>所发图片 pics</li>
+<li>…</li>
+</ul>
+<h2 id="各种Id相互转换的代码"><a href="#各种Id相互转换的代码" class="headerlink" title="各种Id相互转换的代码"></a>各种Id相互转换的代码</h2><p>下面的<code>contianerId</code>指用户微博页面的<code>contianerId</code></p>
+<h3 id="uid转contianerId"><a href="#uid转contianerId" class="headerlink" title="uid转contianerId"></a>uid转contianerId</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* uid转contianerId</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> yanximin</span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String <span class="title">uidToContainerId</span><span class="params">(String uid)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(uid==<span class="keyword">null</span>)</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"uid is null"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">107603</span>+uid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="昵称转contianerId"><a href="#昵称转contianerId" class="headerlink" title="昵称转contianerId"></a>昵称转contianerId</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 昵称转contianerId</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> yanximin</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IOException </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> ClientProtocolException </span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String <span class="title">nicknameToContainerId</span><span class="params">(String nickname)</span> <span class="keyword">throws</span> ClientProtocolException, IOException</span>&#123;</span><br><span class="line">	String url = <span class="string">"http://m.weibo.com/n/"</span>+nickname;</span><br><span class="line">	HttpClient httpClient = HttpClients.createDefault();</span><br><span class="line">	HttpPost post = <span class="keyword">new</span> HttpPost(url);</span><br><span class="line">	post.setHeader(<span class="string">"User-Agent"</span>, USER_AGENT);</span><br><span class="line">	HttpResponse response = httpClient.execute(post);</span><br><span class="line">	post.abort();</span><br><span class="line">	<span class="keyword">if</span>(response.getStatusLine().getStatusCode()==<span class="number">302</span>)&#123;</span><br><span class="line">		String cid = response.getLastHeader(<span class="string">"Location"</span>).getValue().substring(<span class="number">27</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="string">"107603"</span> + cid;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用户名转contianerId"><a href="#用户名转contianerId" class="headerlink" title="用户名转contianerId"></a>用户名转contianerId</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 用户名转contianerId</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> yanximin</span></span><br><span class="line"><span class="comment">* <span class="doctag">@throws</span> IOException </span></span><br><span class="line"><span class="comment">* <span class="doctag">@throws</span> ClientProtocolException </span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> String <span class="title">usernameToContainerId</span><span class="params">(String name)</span> <span class="keyword">throws</span> ClientProtocolException, IOException</span>&#123;</span><br><span class="line">    String url = <span class="string">"https://weibo.cn/"</span>+name;</span><br><span class="line">    HttpClient httpClient = HttpClients.createDefault();</span><br><span class="line">    HttpGet get = <span class="keyword">new</span> HttpGet(url);</span><br><span class="line">    get.setHeader(<span class="string">"User-Agent"</span>, USER_AGENT);</span><br><span class="line">    HttpResponse response = httpClient.execute(get);</span><br><span class="line">    String ret = EntityUtils.toString(response.getEntity(), <span class="string">"utf-8"</span>);</span><br><span class="line">    Pattern pattern = Pattern.compile(<span class="string">"href=\"/([\\d]*?)/info\""</span>);</span><br><span class="line">    Matcher matcher = pattern.matcher(ret);</span><br><span class="line">    <span class="keyword">while</span>(matcher.find())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"107603"</span> + matcher.group(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    post.last_updated<time datetime="2018-04-08T13:13:48.000Z" itemprop="dateUpdated">2018-04-08 21:13:48</time>
+</span><br>
+
+
+        
+        欢迎大家在这里留言
+        
+    </div>
+    <footer>
+        <a href="http://blog.yanximin.site">
+            <img src="/img/avatar.jpg" alt="Yan Ximin">
+            Yan Ximin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/&title=《微博用户标识详解》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/&title=《微博用户标识详解》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《微博用户标识详解》 — 无名小站&url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/06/delete-git-repository/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">删除GitHub仓库</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/05/database-recovery/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MySql数据库恢复</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'yAnXImIN',
+            repo: 'comment',
+            oauth: {
+                client_id: 'd12ac644c848fe45ce25',
+                client_secret: '2ee4aedb93051099e9f98294e64026da546d8a58',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/&title=《微博用户标识详解》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/&title=《微博用户标识详解》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《微博用户标识详解》 — 无名小站&url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/09/06/weibo-userid-containerid/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3a0U7DMBBE0f7/T4dXEIp7Z9dFZH3zhEoT+wRpWXv8euHr+natPyG//f3ku7s2XzJkyHgs41petUmno5Bx774jQ4aMcxikFK7vIvg1kox7+7kMGTJklFrAtEDXGkoZMmTIIN9J20q+iJUhQ4aMdCqcR1rA9egfXIvLkCHjgYx0+L/8+SP5hgwZMh7F6GzWrxefd8/fNZMfz5QhQ8ZoBi9wvEVbf04ihHQ+MmTIOIFR2zhLN+B4o8kjhA2Hw2TIkPEQBl9M8o37WpnmY735vyFDhoyhjP4WPG8T+aYeeU0yZMg4gdE/6FALPnnLGLwaGTJkjGPUDjfwu/oFGr1cGTJkHMNIb06DSV6C4606GTJkjGbwbbLaRhhvGdMoApV1GTJkjGCkByZ46FiLNknWihaxMmTIGMdIg8x0/bgrYAjyBBkyZIxjdA5A7Dow0YoWZMiQMZpRG4w3iJsnWgsyZciQMYJB2sFgO7505IsX9zftpgwZMkYz0gVkLTbgT+DlXoYMGScw0mMTfNGbBqJpoUcphwwZMoYy+iFBp+lMl7syZMg4h8En2j88kYaaKM6UIUPGUMYVXv1Wr3ZQA/0dZMiQMZSRlrkOjG/n9QNOGTJkzGPUjkSkwQB/f61MQ4YMGaMZfHFbK4jpYYvWWlyGDBnHMzoAXlKL3asMGTJkNEhp05k2rzJkyDiBsSsMSBe9PBDdtt0mQ4aMBzJqfRcvi2nASajb2kcZMmT8d8YXTSxgvpgvyzkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

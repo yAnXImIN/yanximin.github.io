@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>我是如何搭建起这个网站的 | 无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="网站维护,Linux,Hexo">
+    <meta name="description" content="本文只是做个记录    前期准备域名 域名（Domain Name），是由一串用点分隔的字符组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置，地理上的域名，指代有行政自主权的一个地方区域）。域名是一个IP地址上有“面具” 。一个域名的目的是便于记忆和沟通的一组服务器的地址（网站，电子邮件，FTP等）。    这个博客使用的域名为(blo">
+<meta name="keywords" content="网站维护,Linux,Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我是如何搭建起这个网站的">
+<meta property="og:url" content="http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="本文只是做个记录    前期准备域名 域名（Domain Name），是由一串用点分隔的字符组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置，地理上的域名，指代有行政自主权的一个地方区域）。域名是一个IP地址上有“面具” 。一个域名的目的是便于记忆和沟通的一组服务器的地址（网站，电子邮件，FTP等）。    这个博客使用的域名为(blo">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-04-08T13:13:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我是如何搭建起这个网站的">
+<meta name="twitter:description" content="本文只是做个记录    前期准备域名 域名（Domain Name），是由一串用点分隔的字符组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置，地理上的域名，指代有行政自主权的一个地方区域）。域名是一个IP地址上有“面具” 。一个域名的目的是便于记忆和沟通的一组服务器的地址（网站，电子邮件，FTP等）。    这个博客使用的域名为(blo">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">我是如何搭建起这个网站的</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">我是如何搭建起这个网站的</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-24T11:51:15.000Z" itemprop="datePublished" class="page-time">
+  2017-07-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+   
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前期准备"><span class="post-toc-number">1.</span> <span class="post-toc-text">前期准备</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#域名"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">域名</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#VPS"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">VPS</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#博客搭建"><span class="post-toc-number">2.</span> <span class="post-toc-text">博客搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hexo"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Hexo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Nginx"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Nginx</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-HowToBuildAWebSite"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">我是如何搭建起这个网站的</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-24 19:51:15" datetime="2017-07-24T11:51:15.000Z"  itemprop="datePublished">2017-07-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>本文只是做个记录  </p>
+</blockquote>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><blockquote>
+<p>域名（Domain Name），是由一串用点分隔的字符组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置，地理上的域名，指代有行政自主权的一个地方区域）。域名是一个IP地址上有“面具” 。一个域名的目的是便于记忆和沟通的一组服务器的地址（网站，电子邮件，FTP等）。  </p>
+</blockquote>
+<p>这个博客使用的域名为(blog.yanximin.site)是从阿里云上直接购买得到. 第一年四块钱(很实惠有没有), 但是今年就已经变成了40块钱(坑…).  </p>
+<h2 id="VPS"><a href="#VPS" class="headerlink" title="VPS"></a>VPS</h2><blockquote>
+<p>VPS（Virtual Private Server 虚拟专用服务器）技术，将一台服务器分割成多个虚拟专享服务器的优质服务。实现VPS的技术分为容器[1]  技术，和虚拟化技术[2]  。在容器或虚拟机中，每个VPS都可分配独立公网IP地址、独立操作系统、实现不同VPS间磁盘空间、内存、CPU资源、进程和系统配置的隔离，为用户和应用程序模拟出“独占”使用计算资源的体验。VPS可以像独立服务器一样，重装操作系统，安装程序，单独重启服务器。VPS为使用者提供了管理配置的自由，可用于企业虚拟化，也可以用于IDC资源租用。  </p>
+</blockquote>
+<p>VPS服务器是在<a href="http://bandwagonhost.com/" title="搬瓦工" target="_blank" rel="noopener">搬瓦工</a>上购买,一个月十块钱(1000G流量,10G硬盘). 当服务器的同时,还能顺便FQ,可以说相当划算. VPS上直接使用Bandwagon提供的镜像,安装了CentOS 6. 顺便说一下,他们家的VPS提供了安装ShawdowSocks的脚本,一键安装,十分方便.</p>
+<h1 id="博客搭建"><a href="#博客搭建" class="headerlink" title="博客搭建"></a>博客搭建</h1><h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p>本博客使用<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>框架搭建的.除此之外,使用了<a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank" rel="noopener">indigo</a> 作为网站的前端模板.  </p>
+<blockquote>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+</blockquote>
+<p>而inidigo模板主要有以下的特色  </p>
+<blockquote>
+<ol>
+<li>仅支持 IE10+ 等现代浏览器。 </li>
+<li>去 jQuery，更轻。相信现代浏览器的原生兼容性。 </li>
+<li>使用 Less 作为 css 预处理器，需要安装 <code>hexo-renderer-less</code>。 </li>
+<li>添加了英文字体支持 Roboto。 </li>
+<li>添加了一些波纹效果。By <a href="https://github.com/fians/Waves" target="_blank" rel="noopener">Waves</a> </li>
+<li>无前端依赖的分享实现。 </li>
+<li>基于静态数据的站内搜索，无第三方侵入。 </li>
+<li>支持文章打赏。 </li>
+</ol>
+</blockquote>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>目前,网站通过Hexo生成静态页面,部署在Nginx上.(之前部署在Apache上面,但是存在着一些性能和权限的问题).</p>
+<p>使用如下的脚本在Cent OS上安装Nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin</span><br><span class="line">export PATH</span><br><span class="line"><span class="meta">#</span>安装依赖环境</span><br><span class="line">yum install -y patch openssl make cmake gcc gcc-c++ gcc-g77 flex bison file libtool libtool-libs autoconf kernel-devel libjpeg libjpeg-devel libpng libpng-devel libpng10 libpng10-devel gd gd-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glib2 glib2-devel bzip2 bzip2-devel libevent libevent-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel libidn libidn-devel openssl openssl-devel vim-minimal nano fonts-chinese gettext gettext-devel ncurses-devel gmp-devel pspell-devel unzip libcap diffutils</span><br><span class="line"><span class="meta">#</span>安装PCRE</span><br><span class="line">wget http://downloads.sourceforge.net/project/pcre/pcre/8.36/pcre-8.36.tar.gz</span><br><span class="line">tar zxf pcre-8.36.tar.gz</span><br><span class="line">cd pcre-8.36/</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install</span><br><span class="line">cd ../</span><br><span class="line"><span class="meta">#</span>安装NGINX</span><br><span class="line">wget http://nginx.org/download/nginx-1.6.3.tar.gz</span><br><span class="line">tar zxf nginx-1.6.3.tar.gz</span><br><span class="line">cd nginx-1.6.3/</span><br><span class="line">./configure --user=nobody --group=nobody --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6 --with-http_sub_module --with-http_spdy_module</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">cd ../</span><br><span class="line"></span><br><span class="line">ln -s /usr/local/lib/libpcre.so.1 /lib</span><br><span class="line">ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx</span><br><span class="line">rm -f /usr/local/nginx/conf/nginx.conf</span><br><span class="line">mkdir -p /home/wwwroot/default</span><br><span class="line">chmod +w /home/wwwroot/default</span><br><span class="line">mkdir -p /home/wwwlogs</span><br><span class="line">chmod 777 /home/wwwlogs</span><br><span class="line">chown -R nobody:nobody /home/wwwroot/default</span><br><span class="line"></span><br><span class="line">wget -c http://soft.vpser.net/lnmp/ext/init.d.nginx</span><br><span class="line">cp init.d.nginx /etc/init.d/nginx</span><br><span class="line">chmod +x /etc/init.d/nginx</span><br><span class="line">chkconfig --level 345 nginx on</span><br><span class="line">/sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line">/sbin/iptables-save</span><br><span class="line">ldconfig</span><br><span class="line">wget -c http://redbook.qiniudn.com/nginx.conf</span><br><span class="line">mv nginx.conf /usr/local/nginx/conf/</span><br><span class="line">/etc/init.d/nginx start</span><br></pre></td></tr></table></figure>
+<p>执行完上述脚本之后，还得修改<code>/usr/local/nginx/conf/nginx.conf</code>文件，修改结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">user  root;</span><br><span class="line"></span><br><span class="line">worker_processes auto;</span><br><span class="line"></span><br><span class="line">error_log  /home/wwwlogs/nginx_error.log  crit;</span><br><span class="line"></span><br><span class="line">pid   /usr/local/nginx/logs/nginx.pid;</span><br><span class="line"></span><br><span class="line">worker_rlimit_nofile 51200;</span><br><span class="line"></span><br><span class="line">events</span><br><span class="line">        &#123;</span><br><span class="line">                use epoll;</span><br><span class="line">                worker_connections 51200;</span><br><span class="line">                multi_accept on;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">http</span><br><span class="line">        &#123;</span><br><span class="line">                include       mime.types;</span><br><span class="line">                default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">                server_names_hash_bucket_size 128;</span><br><span class="line">                client_header_buffer_size 32k;</span><br><span class="line">                large_client_header_buffers 4 32k;</span><br><span class="line">                client_max_body_size 50m;</span><br><span class="line"></span><br><span class="line">                sendfile on;</span><br><span class="line">                tcp_nopush     on;</span><br><span class="line"></span><br><span class="line">                keepalive_timeout 60;</span><br><span class="line"></span><br><span class="line">                tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">                gzip             on;</span><br><span class="line">                gzip_comp_level  4;</span><br><span class="line">                gzip_min_length  1k;</span><br><span class="line">                gzip_buffers     4 16k;</span><br><span class="line">                gzip_proxied     any;</span><br><span class="line">                gzip_types       text/plain application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line"></span><br><span class="line">                server_tokens off;</span><br><span class="line"></span><br><span class="line">                fastcgi_connect_timeout 300;</span><br><span class="line">                fastcgi_send_timeout 300;</span><br><span class="line">                fastcgi_read_timeout 300;</span><br><span class="line">                fastcgi_buffer_size 64k;</span><br><span class="line">                fastcgi_buffers 4 64k;</span><br><span class="line">                fastcgi_busy_buffers_size 128k;</span><br><span class="line">                fastcgi_temp_file_write_size 256k;</span><br><span class="line"></span><br><span class="line">                proxy_connect_timeout      5;</span><br><span class="line">                proxy_read_timeout         60;</span><br><span class="line">                proxy_send_timeout         5;</span><br><span class="line">                proxy_buffer_size          16k;</span><br><span class="line">                proxy_buffers              4 64k;</span><br><span class="line">                proxy_busy_buffers_size    128k;</span><br><span class="line">                proxy_temp_file_write_size 128k;</span><br><span class="line"></span><br><span class="line">                 log_format  access  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">             &apos;&quot;$http_user_agent&quot; $http_x_forwarded_for&apos;;</span><br><span class="line"></span><br><span class="line">server</span><br><span class="line">        &#123;</span><br><span class="line">                listen 80 default;</span><br><span class="line">                #listen [::]:80 default ipv6only=on;</span><br><span class="line">                server_name since1989.org geek.wasai.org;</span><br><span class="line">                index index.html index.htm index.php;</span><br><span class="line">                root  /root/hexo/public;</span><br><span class="line"></span><br><span class="line">                #error_page   404   /404.html;</span><br><span class="line">                location ~ [^/]\.php(/|$)</span><br><span class="line">                        &#123;</span><br><span class="line">                                # comment try_files $uri =404; to enable pathinfo</span><br><span class="line">                                try_files $uri =404;</span><br><span class="line">                                fastcgi_pass  unix:/tmp/php-cgi.sock;</span><br><span class="line">                                fastcgi_index index.php;</span><br><span class="line">                                include fastcgi.conf;</span><br><span class="line">                                #include pathinfo.conf;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                location /nginx_status &#123;</span><br><span class="line">                        stub_status on;</span><br><span class="line">                        access_log   off;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br><span class="line">                        &#123;</span><br><span class="line">                                expires      30d;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                location ~ .*\.(js|css)?$</span><br><span class="line">                        &#123;</span><br><span class="line">                                expires      12h;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                access_log  /home/wwwlogs/access.log  access;</span><br><span class="line">        &#125;</span><br><span class="line">include vhost/*.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启Nginx之后，我们的博客服务就可以完美地运行了</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    post.last_updated<time datetime="2018-04-08T13:13:57.000Z" itemprop="dateUpdated">2018-04-08 21:13:57</time>
+</span><br>
+
+
+        
+        欢迎大家在这里留言
+        
+    </div>
+    <footer>
+        <a href="http://blog.yanximin.site">
+            <img src="/img/avatar.jpg" alt="Yan Ximin">
+            Yan Ximin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网站维护/">网站维护</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/&title=《我是如何搭建起这个网站的》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/&title=《我是如何搭建起这个网站的》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我是如何搭建起这个网站的》 — 无名小站&url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/01/mark-down-for-vscode/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">vscode中使用markdown</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/24/WebMagic/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用WebMagic定制爬虫</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'yAnXImIN',
+            repo: 'comment',
+            oauth: {
+                client_id: 'd12ac644c848fe45ce25',
+                client_secret: '2ee4aedb93051099e9f98294e64026da546d8a58',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/&title=《我是如何搭建起这个网站的》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/&title=《我是如何搭建起这个网站的》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《我是如何搭建起这个网站的》 — 无名小站&url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/07/24/HowToBuildAWebSite/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aS47jMAwFwNz/0m5gttOR+cikAUulVZA4tsoLQvy8XuV1/Vvr76//1rvvK9e8vrEwMDAey6g/prL19X97z11fg4GBcQ6jEkzX/3r3gPXj66/sZs8YGBgY5S32wm799WFgYGCkAbcSTHuHSwwMDIx5MpnWvtJX88VcHAMD44GMtDHwl5+/2N/AwMB4COMarHojsx58mzvBwMDYmrEupaUh+BuNzyAQY2BgbMpYAyq3Tst2vdT3Zm8YGBgHMHqF/l4zske6eRYGBsbWjEkVK2159oY5JodXDAyMnRhpgzDNkj9Vzmt2YjEwMDZizJPY9JpJ2e5tYwADA2M7Rg9QKd/Xx7/ShBkDA+M0Rm/raZo63+ionYmBgfFwRuX4NTne1Q98k/IfBgbGyYx0hKLX4EyHyeI3ioGBsQVjHhx7Dcs0WAdzGRgYGJsy6qnmOnSmSWw9bcbAwDiTERTcB2MWaVt0NHyGgYGxKaPZLBy3MOcjGhgYGKcxekMSaXkuLa4FRT0MDIwDGJVg+tl2wjp9rb9QDAyMExjpjdLCXK8Y10yhMTAwtmNc4QoGIMqwXhv1l7EwDAyMTRlpZzCN5XVwevRM74mBgfF0xjzI1kts9fGOuMGAgYFxACOezggbmfN1A8PAwMAoD3JNimj1VkF8esXAwDiGUd96vfEZ9C4meTYGBsYWjF6xvvfrpBmAgYFxJqMXlOetzfWB71NHTwwMjIczfgAbK4mHnnSWJgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

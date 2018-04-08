@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="博客">
+    <meta name="description" content="随便记录点东西">
+<meta name="keywords" content="博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="无名小站">
+<meta property="og:url" content="http://blog.yanximin.site/page/2/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="随便记录点东西">
+<meta property="og:locale" content="zh-cn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无名小站">
+<meta name="twitter:description" content="随便记录点东西">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">无名小站</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header index-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">无名小站</h1>
+        <h5 class="subtitle">
+            
+                欢迎来到这里！
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+
+    <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-java-download"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-04 04:51:12" datetime="2017-09-03T20:51:12.000Z"  itemprop="datePublished">2017-09-04</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/04/java-download/">使用Java下载大文件</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        主要思路是将大文件分解成若干个小文件进行下载.
+本功能由两个类实现:DownLoadManager和DownloadThreadTask实现. 其中DownLoadManager类主要负责下载任务的初始化和调度, DownloadThreadTask主要负责处理下载任务.  
+用到的主要工具类有  
+
+org.apache.http.impl.client.CloseableHttpClie...
+    
+
+        <a href="/2017/09/04/java-download/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-interview"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-08-13 05:10:11" datetime="2017-08-12T21:10:11.000Z"  itemprop="datePublished">2017-08-13</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/13/interview/">面试记录</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        面试记录2017.8.14 百度 百度运维团队面试的地点在百度科技园K2一楼大厅里。里面都是面试的，不知道是不是为同一个部门。面试官好像不是搞Java的，面的问题中没有包含任何Java的内容而且不清楚SSH框架。主要问了一下项目的事情：  
+
+EM999中的架构，数据库设计，功能设计等等。询问了具体实现细节，系统是否包含自学习功能等。  
+在网易实习的情况，爬虫的架构和性能等。 
+
+介绍完上...
+    
+
+        <a href="/2017/08/13/interview/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-java-nio"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-08-08 07:05:48" datetime="2017-08-07T23:05:48.000Z"  itemprop="datePublished">2017-08-08</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/08/java-nio/">Java nio</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+转载自http://ifeve.com/overview/原始英文地址: http://tutorials.jenkov.com/java-nio/overview.html
+
+Java NIO 由以下几个核心部分组成：
+
+Channels
+Buffers
+Selectors虽然Java NIO 中除此之外还有很多类和组件，但在我看来，Channel，Buffer 和 Selector 构...
+    
+
+        <a href="/2017/08/08/java-nio/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-reflect-1"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-08-04 08:29:02" datetime="2017-08-04T00:29:02.000Z"  itemprop="datePublished">2017-08-04</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/04/reflect-1/">Java 反射机制初探</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Java 反射机制反射(Reflect)是Java语言中的重要的特性. Java框架中的绝大多数都使用了反射. 理解框架必须要精通反射的实现和原理. 在java.lang.reflect中, Java提供了一些列反射的类. 其中, 最常用的几个类分别为Class(这个类在java.lang包下), Method, Field, Constructor. 从字面意思上来看, 上面几个类分别对应...
+    
+
+        <a href="/2017/08/04/reflect-1/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-mark-down-for-vscode"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-08-01 02:58:53" datetime="2017-07-31T18:58:53.000Z"  itemprop="datePublished">2017-08-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/08/01/mark-down-for-vscode/">vscode中使用markdown</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+转载自http://www.cnblogs.com/rengised/p/6985031.html
+
+
+vscode 是微软推出一款轻量级的文本编辑工具，类似于sublime，由于其拥有丰富的插件，安装使用也非常简单，所以深受广大程序员的喜爱。
+markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。
+印象笔记 是一款具有笔记、...
+    
+
+        <a href="/2017/08/01/mark-down-for-vscode/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/">vscode</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-HowToBuildAWebSite"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-07-24 19:51:15" datetime="2017-07-24T11:51:15.000Z"  itemprop="datePublished">2017-07-24</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/24/HowToBuildAWebSite/">我是如何搭建起这个网站的</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+本文只是做个记录  
+
+前期准备域名
+域名（Domain Name），是由一串用点分隔的字符组成的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置，地理上的域名，指代有行政自主权的一个地方区域）。域名是一个IP地址上有“面具” 。一个域名的目的是便于记忆和沟通的一组服务器的地址（网站，电子邮件，FTP等）。  
+
+这个博客使用的域名为(...
+    
+
+        <a href="/2017/07/24/HowToBuildAWebSite/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网站维护/">网站维护</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-WebMagic"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-07-24 17:28:47" datetime="2017-07-24T09:28:47.000Z"  itemprop="datePublished">2017-07-24</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/07/24/WebMagic/">使用WebMagic定制爬虫</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        使用WebMagic定制爬虫
+WebMagic是一个简单灵活的Java爬虫框架。基于WebMagic，你可以快速开发出一个高效、易维护的爬虫。 
+WebMagic的总体架构如下图所示
+                
+                    
+                    
+                
+                
+            ...
+    
+
+        <a href="/2017/07/24/WebMagic/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebMagic/">WebMagic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-three-tools-for-jvm"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-06-30 10:32:18" datetime="2017-06-30T02:32:18.000Z"  itemprop="datePublished">2017-06-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/30/three-tools-for-jvm/">三个方便查看JVM信息的工具</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        1 JPSJPS是jdk提供的一个查看当前Java进程的小工具， 可以看做是JavaVirtual Machine Process Status Tool的缩写。
+                
+                    
+                    
+                
+                
+            比方说上图，有两个J...
+    
+
+        <a href="/2017/06/30/three-tools-for-jvm/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-problem-of-server"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-06-22 09:06:34" datetime="2017-06-22T01:06:34.000Z"  itemprop="datePublished">2017-06-22</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/06/22/problem-of-server/">服务器近阶段遇到的问题和解决方法</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        近阶段，我们服务器一直处于不稳定的状态。主要现象有：
+
+网站页面无法打开。
+静态图片无法打开
+一般为内存溢出或者泄露
+修改的方向为Java或者Tomcat方面
+
+
+网站应用无法正常连接数据库，进而无法进行登录等操作。
+网站应用无法使用MySQL数据库
+一般为连接池资源耗尽
+少数情况下为数据库账号密码出现偏差
+
+
+数据库连接池频繁出现死锁问题。
+C3P0和Spring可能存在问题
+对其进行配置...
+    
+
+        <a href="/2017/06/22/problem-of-server/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-MAKEDOWN"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2016-08-31 23:32:03" datetime="2016-08-31T15:32:03.000Z"  itemprop="datePublished">2016-08-31</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2016/08/31/MAKEDOWN/">Markdown 语法说明</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        &lt;&lt; 访问 Wow!Ubuntu
+NOTE: This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to Markdown: Syntax.
+声明： 这份文档派生(fork)于繁...
+    
+
+        <a href="/2016/08/31/MAKEDOWN/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+    </ul>
+
+    
+<nav id="page-nav">
+    <div class="inner">
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </div>
+</nav>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/page/2/&title=无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/page/2/&title=无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/page/2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=无名小站&url=http://blog.yanximin.site/page/2/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/page/2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB00lEQVR42u3ay24CMQwFUP7/p6fbVtWEa+cxIJ2sqgLDCQsrvs7rFa/r1xq/eveeu0+9dixcXNxp7jVcCegK1n/i+Pm3m8fFxT3IHReau0eP/9N7/xsbLi7uB3OrBSgvari4uN/InelTqs/HxcV9ljvftKzNMRb0ari4uBPcari54+8t+S4uLm6LexVXMmLJy1z523FxcY9w84KSBx+9yLUw3MXFxd3Mnb9UkSCS8DT6Xlxc3Ie4vUblaq3yBQ5cXNwj3LyZmRmaVp+QX87AxcU9w00OJdVi1BuuFNokXFzcDdzFx47gYkdvVIOLi3uGOz6I5NcjmkltbPjTq+Hi4m7mzlyfysPQmYgkqr64uLjbuNXxSbUA9TZQCExxcXGXcvPmZ3ezFLVPuLi4B7njw0T1KFMdtxQuauDi4h7nJkORZEu9cWn0KVxc3Ie41eFrfhGzeaxZ9SBcXNzgnVdx9aKTPByJ9oGLi7uZW40n8sNKUpjyY1N5M7i4uNPcvHj14tRqIPvmVVxc3IPcvNDMXNRIyt+bIBUXF/cjub0mqtd0LT4x4eLibubOBCW9gS4uLu55bjUkzePOfDPRj4WLi3uEOz+nzQcneVu1IN/FxcXtcH8A06AgHlMiuT0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

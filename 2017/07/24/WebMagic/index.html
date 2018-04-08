@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>使用WebMagic定制爬虫 | 无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="WebMagic,爬虫">
+    <meta name="description" content="使用WebMagic定制爬虫 WebMagic是一个简单灵活的Java爬虫框架。基于WebMagic，你可以快速开发出一个高效、易维护的爬虫。  WebMagic的总体架构如下图所示">
+<meta name="keywords" content="WebMagic,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用WebMagic定制爬虫">
+<meta property="og:url" content="http://blog.yanximin.site/2017/07/24/WebMagic/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="使用WebMagic定制爬虫 WebMagic是一个简单灵活的Java爬虫框架。基于WebMagic，你可以快速开发出一个高效、易维护的爬虫。  WebMagic的总体架构如下图所示">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="http://code4craft.github.io/images/posts/webmagic.png">
+<meta property="og:updated_time" content="2018-04-08T13:13:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用WebMagic定制爬虫">
+<meta name="twitter:description" content="使用WebMagic定制爬虫 WebMagic是一个简单灵活的Java爬虫框架。基于WebMagic，你可以快速开发出一个高效、易维护的爬虫。  WebMagic的总体架构如下图所示">
+<meta name="twitter:image" content="http://code4craft.github.io/images/posts/webmagic.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用WebMagic定制爬虫</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用WebMagic定制爬虫</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-24T09:28:47.000Z" itemprop="datePublished" class="page-time">
+  2017-07-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+   
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用WebMagic定制爬虫"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用WebMagic定制爬虫</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-WebMagic"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用WebMagic定制爬虫</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-24 17:28:47" datetime="2017-07-24T09:28:47.000Z"  itemprop="datePublished">2017-07-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="使用WebMagic定制爬虫"><a href="#使用WebMagic定制爬虫" class="headerlink" title="使用WebMagic定制爬虫"></a>使用WebMagic定制爬虫</h1><hr>
+<p><a href="http://webmagic.io/" target="_blank" rel="noopener">WebMagic</a>是一个简单灵活的Java爬虫框架。基于WebMagic，你可以快速开发出一个高效、易维护的爬虫。 </p>
+<p>WebMagic的总体架构如下图所示<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://code4craft.github.io/images/posts/webmagic.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>  </p>
+<p><strong>Downloader</strong></p>
+<p>Downloader负责从互联网上下载页面，以便后续处理。WebMagic默认使用了Apache HttpClient作为下载工具。</p>
+<p><strong>PageProcessor</strong></p>
+<p>PageProcessor负责解析页面，抽取有用信息，以及发现新的链接。WebMagic使用Jsoup作为HTML解析工具，并基于其开发了解析XPath的工具Xsoup。</p>
+<p>在这四个组件中，PageProcessor对于每个站点每个页面都不一样，是需要使用者定制的部分。</p>
+<p><strong>Scheduler</strong></p>
+<p>Scheduler负责管理待抓取的URL，以及一些去重的工作。WebMagic默认提供了JDK的内存队列来管理URL，并用集合来进行去重。也支持使用Redis进行分布式管理。</p>
+<p>除非项目有一些特殊的分布式需求，否则无需自己定制Scheduler。</p>
+<p><strong>Pipeline</strong></p>
+<p>Pipeline负责抽取结果的处理，包括计算、持久化到文件、数据库等。WebMagic默认提供了“输出到控制台”和“保存到文件”两种结果处理方案。</p>
+<p>Pipeline定义了结果保存的方式，如果你要保存到指定数据库，则需要编写对应的<code>Pipeline</code>。对于一类需求一般只需编写一个<code>Pipeline</code>。</p>
+<p>根据WebMagic的文档我们能够很快写出一个爬虫。比如下面就是一个爬取糗事百科的简单爬虫Demo<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Page;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Site;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.Spider;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.pipeline.ConsolePipeline;</span><br><span class="line"><span class="keyword">import</span> us.codecraft.webmagic.processor.PageProcessor;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QSBKPageProcesser</span> <span class="keyword">implements</span> <span class="title">PageProcessor</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Site site = Site.me()</span><br><span class="line">			.addHeader(<span class="string">"User-Agent"</span>, <span class="string">"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1) QQBrowser/6.0"</span>)</span><br><span class="line">			.setDomain(<span class="string">"www.qiushibaike.com"</span>).setTimeOut(<span class="number">5000</span>).setRetryTimes(<span class="number">5</span>);</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">(Page page)</span> </span>&#123;</span><br><span class="line">		String url = page.getUrl().toString();</span><br><span class="line">		<span class="keyword">if</span>(url.contains(<span class="string">"article"</span>))&#123;</span><br><span class="line">			<span class="comment">//解析内容界面</span></span><br><span class="line">			System.out.println(page.getHtml().xpath(<span class="string">"//div[@class='content']/text()"</span>).toString());</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="comment">//解析列表界面</span></span><br><span class="line">			List&lt;String&gt; list = page.getHtml().xpath(<span class="string">"//a[@class='contentHerf']/@href"</span>).all();</span><br><span class="line">			page.addTargetRequests(list);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Site <span class="title">getSite</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.site;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Spider spider = Spider.create(<span class="keyword">new</span> QSBKPageProcesser()).addPipeline(<span class="keyword">new</span> ConsolePipeline());</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">9</span>;i++)&#123;</span><br><span class="line">			spider.addUrl(<span class="string">"https://www.qiushibaike.com/8hr/page/"</span>+i+<span class="string">"/?s=4996915"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		spider.run();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后爬虫的输出结果如下  </p>
+<pre><code>get page: https://www.qiushibaike.com/8hr/page/1/?s=4996915
+get page: https://www.qiushibaike.com/8hr/page/2/?s=4996915
+get page: https://www.qiushibaike.com/8hr/page/3/?s=4996915
+get page: https://www.qiushibaike.com/8hr/page/4/?s=4996915
+get page: https://www.qiushibaike.com/8hr/page/5/?s=4996915
+get page: https://www.qiushibaike.com/8hr/page/6/?s=4996915
+get page: https://www.qiushibaike.com/8hr/page/7/?s=4996915
+get page: https://www.qiushibaike.com/8hr/page/8/?s=4996915
+ 那天去海边游泳，有一位大哥穿着上衣游，我不禁问他：“大哥，为什么你不光膀子游，衣服贴在身上多难受！”大哥脱了上衣给我看，身体上面有文胸的白色?迹。我正惊疑不定，大哥抹了一把脸说：“我前天撩起背心晒日光浴，没想到晒成这样，怪我没经验.....” 
+get page: https://www.qiushibaike.com/article/119336220
+ 小学放假的一天，爸爸让我在家好好写作业，怕我偷看电视，就把总闸拉下来，去地里干活了。但是，架不住我聪明啊。等他们走了，我自己偷偷的合上闸看电视。为了怕他们发现电视后壳发热，我提前一段时间就关了电视。可是，那顿打我还是没有逃过去，我忘了电表是会动的！ 
+get page: https://www.qiushibaike.com/article/119337633
+ 三个宿舍舍友出去聚餐，十一个人正好一桌，结账的时候约好大家各人掏出一张银行卡给服务员抽一张刷，服务员抽到第四张余额不足的时候终于发飙了 
+get page: https://www.qiushibaike.com/article/119337499
+ 嫂子炸乎乎的打来电话：你哥摊上大事了！被人给告了！我一惊，忙安慰她：别着急，有话好好说，啥事谁告的？她：你八岁的大侄子告的呀，揍了他一顿，就跑到街头派.出所告你哥虐待儿童，你哥正在所里接受教育呢…… 
+get page: https://www.qiushibaike.com/article/119337859
+ LZ农村的割…… 小时候和老妈 我弟一起去上山砍柴，砍累了就坐在树下乘凉 ，我弟就趴树上去摇树枝玩，突然…… 树上掉下一条蛇落在我头上，当时我和蛇都惊呆了……呆了……了 
+get page: https://www.qiushibaike.com/article/119335791
+ 在家无聊，想去看个电影，到电影院买票，一张45，给了售票员一张一百，她居然找我10块，我手里拿着钱，和售票员对视五秒后…她用非常惊讶的表情问我：你一个人看电影？ …靠 有谁规定看电影必须两个人么！ 你妹的 
+get page: https://www.qiushibaike.com/article/119336589
+ 爷爷年轻的时候脾气比较暴躁，喝醉酒就打奶奶，奶奶一直忍气吞声的过日子。现在儿女都在外面安家落户，70多岁的爷爷还是跟奶奶生活在老家，不愿意来城里跟我们一起住。昨晚爷爷又打电话过来：儿子啊，你快管管你娘吧，这个星期已经揍了我三回，我现在打不过他啊。 
+get page: https://www.qiushibaike.com/article/119337603
+</code></pre><p>可见，使用WebMagic构建一个爬虫是十分便捷的，不逊色于Python的Scrapy。:)</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    post.last_updated<time datetime="2018-04-08T13:13:56.000Z" itemprop="dateUpdated">2018-04-08 21:13:56</time>
+</span><br>
+
+
+        
+        欢迎大家在这里留言
+        
+    </div>
+    <footer>
+        <a href="http://blog.yanximin.site">
+            <img src="/img/avatar.jpg" alt="Yan Ximin">
+            Yan Ximin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebMagic/">WebMagic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/07/24/WebMagic/&title=《使用WebMagic定制爬虫》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/07/24/WebMagic/&title=《使用WebMagic定制爬虫》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/07/24/WebMagic/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用WebMagic定制爬虫》 — 无名小站&url=http://blog.yanximin.site/2017/07/24/WebMagic/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/07/24/WebMagic/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/07/24/HowToBuildAWebSite/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">我是如何搭建起这个网站的</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/30/three-tools-for-jvm/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">三个方便查看JVM信息的工具</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'yAnXImIN',
+            repo: 'comment',
+            oauth: {
+                client_id: 'd12ac644c848fe45ce25',
+                client_secret: '2ee4aedb93051099e9f98294e64026da546d8a58',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/07/24/WebMagic/&title=《使用WebMagic定制爬虫》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/07/24/WebMagic/&title=《使用WebMagic定制爬虫》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/07/24/WebMagic/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用WebMagic定制爬虫》 — 无名小站&url=http://blog.yanximin.site/2017/07/24/WebMagic/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/07/24/WebMagic/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMklEQVR42u3aSZKDQAwFUd//0vTWEW4gf6lYICWrDsxQj4VaQ30++Di+jt8z3+evrz978tldmw8ZMmS8lnFcHvyayls2vFeGDBkDGCQU8kB8fRd/F1mbDBkyZJxdw1M6nj7KkCFDxhMMntjxAC1DhgwZlSK23hTjn+PBWlyGDBkvZOwqMp/4+5H5hgwZMl7FWGvWk0CZhkseZP95jgwZMlozeIBLF8GjImnAoRaeDBkyhjF4SclDZPp8PjyQIUNGbwZSghesLYsPHm5afjJkyBjA4Jsq1krTNOGLxw8yZMgYw0hfw7dKVIpeNKKQIUNGawZvyq9tpODJ5do2MhStZciQ0Yix6wVrA4DKsFOGDBkTGGmTi6R9vByttOdkyJAxgbEr+eNNukqb72abhQwZMpoyePFJ0jIyztz1URZraBkyZLyWEZeIhSY+STTJh0AZrgwZMhoxdo0Y17ZfrI0BZMiQMYfBwxlvwwVlZ/hRTs/LkCGjNYOEwspWjPQJBziC4aUMGTIaMXjRSJbLQyf/FSWOMmTIGMlIW2mVFJNvsIgDrgwZMhoxSOufh0Weeu4aQsiQIaMr4wgP1PDC11QCrgwZMuYw0n1W1w9Nk8h0gBrsGZEhQ0Y7xlojftvQEQfrm3tlyJAxgJEGysrSK/8B4lpchgwZIxlrI4Q0iKfbyGTIkCGjsmg+jCQbMm6KWBkyZLRm8GEA31TBkz9+jQwZMmYy0tJxbfBZWTQfTsiQIaMd4w8SoRkGpKgYWAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

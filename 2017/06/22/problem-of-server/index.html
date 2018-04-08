@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>服务器近阶段遇到的问题和解决方法 | 无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,Tomcat">
+    <meta name="description" content="近阶段，我们服务器一直处于不稳定的状态。主要现象有：  网站页面无法打开。 静态图片无法打开 一般为内存溢出或者泄露 修改的方向为Java或者Tomcat方面   网站应用无法正常连接数据库，进而无法进行登录等操作。 网站应用无法使用MySQL数据库 一般为连接池资源耗尽 少数情况下为数据库账号密码出现偏差   数据库连接池频繁出现死锁问题。 C3P0和Spring可能存在问题 对其进行配置来减少">
+<meta name="keywords" content="Java,Tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器近阶段遇到的问题和解决方法">
+<meta property="og:url" content="http://blog.yanximin.site/2017/06/22/problem-of-server/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="近阶段，我们服务器一直处于不稳定的状态。主要现象有：  网站页面无法打开。 静态图片无法打开 一般为内存溢出或者泄露 修改的方向为Java或者Tomcat方面   网站应用无法正常连接数据库，进而无法进行登录等操作。 网站应用无法使用MySQL数据库 一般为连接池资源耗尽 少数情况下为数据库账号密码出现偏差   数据库连接池频繁出现死锁问题。 C3P0和Spring可能存在问题 对其进行配置来减少">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-04-08T13:13:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="服务器近阶段遇到的问题和解决方法">
+<meta name="twitter:description" content="近阶段，我们服务器一直处于不稳定的状态。主要现象有：  网站页面无法打开。 静态图片无法打开 一般为内存溢出或者泄露 修改的方向为Java或者Tomcat方面   网站应用无法正常连接数据库，进而无法进行登录等操作。 网站应用无法使用MySQL数据库 一般为连接池资源耗尽 少数情况下为数据库账号密码出现偏差   数据库连接池频繁出现死锁问题。 C3P0和Spring可能存在问题 对其进行配置来减少">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">服务器近阶段遇到的问题和解决方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">服务器近阶段遇到的问题和解决方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-22T01:06:34.000Z" itemprop="datePublished" class="page-time">
+  2017-06-22
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+   
+<article id="post-problem-of-server"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">服务器近阶段遇到的问题和解决方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-22 09:06:34" datetime="2017-06-22T01:06:34.000Z"  itemprop="datePublished">2017-06-22</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>近阶段，我们服务器一直处于不稳定的状态。<br>主要现象有：</p>
+<ul>
+<li>网站页面无法打开。<ul>
+<li>静态图片无法打开</li>
+<li>一般为内存溢出或者泄露</li>
+<li>修改的方向为Java或者Tomcat方面</li>
+</ul>
+</li>
+<li>网站应用无法正常连接数据库，进而无法进行登录等操作。<ul>
+<li>网站应用无法使用MySQL数据库</li>
+<li>一般为连接池资源耗尽</li>
+<li>少数情况下为数据库账号密码出现偏差</li>
+</ul>
+</li>
+<li>数据库连接池频繁出现死锁问题。<ul>
+<li>C3P0和Spring可能存在问题</li>
+<li>对其进行配置来减少死锁出现的情况  </li>
+</ul>
+</li>
+</ul>
+<p>我们针对上述现象，主要有如下的解决方法  </p>
+<ul>
+<li>定时重启网站。<ul>
+<li>Windows 计算机&gt;管理&gt;任务计划程序概述&gt;创建基本任务。</li>
+<li>Linux 使用Shell脚本或者使用Crontab程序创建定时任务。</li>
+</ul>
+</li>
+<li>增加Tomcat连接数。<ul>
+<li>在server.xml文件中配置。</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               maxThreads=&quot;1000&quot; 
+               minSpareThreads=&quot;200&quot; 
+               acceptCount=&quot;100&quot;
+               maxIdleTime=&quot;30000&quot;
+               URIEncoding=&quot;UTF-8&quot; 
+               redirectPort=&quot;8443&quot; /&gt;
+</code></pre><ul>
+<li>增加Hibernate连接池连接数。<ul>
+<li>在ApplicationContext.xml文件中配置。</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;property name=&quot;maxPoolSize&quot; value=&quot;500&quot; /&gt;
+&lt;property name=&quot;minPoolSize&quot; value=&quot;100&quot; /&gt;
+&lt;property name=&quot;initialPoolSize&quot; value=&quot;200&quot; /&gt;
+&lt;property name=&quot;maxIdleTime&quot; value=&quot;60&quot; /&gt;
+&lt;property name=&quot;acquireIncrement&quot; value=&quot;5&quot;&gt;&lt;/property&gt;
+&lt;property name=&quot;idleConnectionTestPeriod&quot; value=&quot;60&quot;&gt;&lt;/property&gt;
+&lt;property name=&quot;acquireRetryAttempts&quot; value=&quot;5&quot;&gt;&lt;/property&gt;
+</code></pre><ul>
+<li>增加JVM内存以及改变GC方法。<ul>
+<li>在catlina.xml 文件中配置。</li>
+</ul>
+</li>
+</ul>
+<pre><code>set JAVA_OPTS=%JAVA_OPTS% -server -Xmx4550m -Xms4550m -Xmn2g -XX:PermSize=756m -XX:MaxPermSize=756m -Xss512k -XX:ParallelGCThreads=8 -XX:-DisableExplicitGC -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:SurvivorRatio=8  
+</code></pre><ul>
+<li>检查可能会导致内存泄漏问题的代码。<ul>
+<li>在DAO层进行数据库操作的时候，如果用到了HibernateSupport类中的getSession()方法，则最后应该使用releaseSession()方法来释放连接。经过上述操作之后，一个数据库连接才能被数据库连接池重用。</li>
+</ul>
+</li>
+<li>修改Hibernate参数来减少死锁发生的频率。<ul>
+<li>在ApplicationContext.xml文件中配置。</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;property name=&quot;checkoutTimeout&quot; value=&quot;100&quot;/&gt;
+&lt;property name=&quot;maxStatements&quot; value=&quot;0&quot;/&gt;
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    post.last_updated<time datetime="2018-04-08T13:13:49.000Z" itemprop="dateUpdated">2018-04-08 21:13:49</time>
+</span><br>
+
+
+        
+        欢迎大家在这里留言
+        
+    </div>
+    <footer>
+        <a href="http://blog.yanximin.site">
+            <img src="/img/avatar.jpg" alt="Yan Ximin">
+            Yan Ximin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/06/22/problem-of-server/&title=《服务器近阶段遇到的问题和解决方法》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/06/22/problem-of-server/&title=《服务器近阶段遇到的问题和解决方法》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/06/22/problem-of-server/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《服务器近阶段遇到的问题和解决方法》 — 无名小站&url=http://blog.yanximin.site/2017/06/22/problem-of-server/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/06/22/problem-of-server/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/30/three-tools-for-jvm/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">三个方便查看JVM信息的工具</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/08/31/MAKEDOWN/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Markdown 语法说明</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'yAnXImIN',
+            repo: 'comment',
+            oauth: {
+                client_id: 'd12ac644c848fe45ce25',
+                client_secret: '2ee4aedb93051099e9f98294e64026da546d8a58',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/06/22/problem-of-server/&title=《服务器近阶段遇到的问题和解决方法》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/06/22/problem-of-server/&title=《服务器近阶段遇到的问题和解决方法》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/06/22/problem-of-server/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《服务器近阶段遇到的问题和解决方法》 — 无名小站&url=http://blog.yanximin.site/2017/06/22/problem-of-server/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/06/22/problem-of-server/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3aS27DMAxF0ex/0+60RRv5PlINYOpqVBSKreMBIX5eL7yub2u95/f+d7/9/X/yltaSIUPGYxnXctX2kOev9/D3ypAh4xwGCaDkuORw6bvW+2XIkCGD7FmHS/4hZMiQIWNvwOUhlR9ahgwZMtaMvaGzVmL7UC4uQ4aMBzJ41f3zf/9Lf0OGDBmPYlzh2lue65zkxzNlyJAxmsEDHCftamTGwx8yZMgYyqiNStTuaeloRdAulSFDxjEM/rPaCAUP3OkeGTJkzGaQmyMJnQSc1s3iFqYMGTKGMkg6Wnt92mzgz/zjzDJkyBjN6ATcfjOylsSijyVDhoxBDB5w+0V8XmiLP5kMGTJGM9IhibRtUCuukU9204mVIUPGUEa/PVkb/EpT6LenlSFDxgEMEmR5w7KYQ3cKfzJkyBjNqDUj++MR6fgXao7KkCHjAEYtTeWpaRrQt91zZciQMYhB0tq0nUCOko7SypAh40wGD6P8MpcGzdqohwwZMk5g9Ae8+HUwHdoISngyZMg4hkECIj96Ol7WaZHKkCHjBEanMdA57itcNwFXhgwZ4xhXuPiVkRx0/fwg4MqQIWM0Iw1zvMRWg/WLfTJkyJjK6CSQu/7PA3Gx2idDhowRjNpQRS04dq59N/dcGTJkyGjX4flYRnwBlSFDhgx83HTklI+a3bQWZMiQcQCDJLFprY6no3yAbEO5TYYMGQ9k1EYcaqkp+RydMTUZMmSMY3wBSiyTYbevu3kAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

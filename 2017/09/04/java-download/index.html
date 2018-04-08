@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>使用Java下载大文件 | 无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java">
+    <meta name="description" content="主要思路是将大文件分解成若干个小文件进行下载. 本功能由两个类实现:DownLoadManager和DownloadThreadTask实现. 其中DownLoadManager类主要负责下载任务的初始化和调度, DownloadThreadTask主要负责处理下载任务.   用到的主要工具类有    org.apache.http.impl.client.CloseableHttpClient">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Java下载大文件">
+<meta property="og:url" content="http://blog.yanximin.site/2017/09/04/java-download/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="主要思路是将大文件分解成若干个小文件进行下载. 本功能由两个类实现:DownLoadManager和DownloadThreadTask实现. 其中DownLoadManager类主要负责下载任务的初始化和调度, DownloadThreadTask主要负责处理下载任务.   用到的主要工具类有    org.apache.http.impl.client.CloseableHttpClient">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-04-08T13:13:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Java下载大文件">
+<meta name="twitter:description" content="主要思路是将大文件分解成若干个小文件进行下载. 本功能由两个类实现:DownLoadManager和DownloadThreadTask实现. 其中DownLoadManager类主要负责下载任务的初始化和调度, DownloadThreadTask主要负责处理下载任务.   用到的主要工具类有    org.apache.http.impl.client.CloseableHttpClient">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Java下载大文件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Java下载大文件</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-03T20:51:12.000Z" itemprop="datePublished" class="page-time">
+  2017-09-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+   
+<article id="post-java-download"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Java下载大文件</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-04 04:51:12" datetime="2017-09-03T20:51:12.000Z"  itemprop="datePublished">2017-09-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>主要思路是将大文件分解成若干个小文件进行下载.</p>
+<p>本功能由两个类实现:<code>DownLoadManager</code>和<code>DownloadThreadTask</code>实现. 其中<code>DownLoadManager</code>类主要负责下载任务的初始化和调度, <code>DownloadThreadTask</code>主要负责处理下载任务.  </p>
+<p>用到的主要工具类有  </p>
+<ol>
+<li><p>org.apache.http.impl.client.CloseableHttpClient  模拟httpClient客户端发送http请求，可以控制到请求文件的字节位置。</p>
+</li>
+<li><p>BufferedInputStream都熟悉，用它接受请求来的流信息缓存。</p>
+</li>
+<li><p>RandomAccessFile文件随机类，可以向文件写入指定位置的流信息。</p>
+</li>
+</ol>
+<p>代码如下:</p>
+<p><code>DownLoadManager</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.RandomAccessFile;</span><br><span class="line"><span class="keyword">import</span> java.net.HttpURLConnection;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang.exception.ExceptionUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.HttpClients;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.conn.PoolingHttpClientConnectionManager;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 文件下载管理类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownLoadManager</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(DownLoadManager.class);</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 每个线程下载的字节数</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> unitSize = <span class="number">1000</span> * <span class="number">1024</span>;</span><br><span class="line">	<span class="keyword">private</span> ExecutorService taskExecutor = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> CloseableHttpClient httpClient;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DownLoadManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		PoolingHttpClientConnectionManager cm = <span class="keyword">new</span> PoolingHttpClientConnectionManager();</span><br><span class="line">		cm.setMaxTotal(<span class="number">100</span>);</span><br><span class="line">		httpClient = HttpClients.custom().setConnectionManager(cm).build();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="keyword">new</span> DownLoadManager().doDownload();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 启动多个线程下载文件</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doDownload</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">//要下载的url</span></span><br><span class="line">		String remoteFileUrl = <span class="string">"http://cn-sdjn-cu-v-04.acgvideo.com/vg4/e/60/21029304-1.mp4?expires=1504513500&amp;platform=pc&amp;ssig=4-pYfuQHUKppz3XGrw6Hnw&amp;oi=1032322900&amp;nfa=T7l/1XWXSxfil4KoioiGpQ==&amp;dynamic=1&amp;hfa=2073962963&amp;hfb=Yjk5ZmZjM2M1YzY4ZjAwYTMzMTIzYmIyNWY4ODJkNWI="</span>;</span><br><span class="line">		String localPath = <span class="string">"E://temp//"</span>;</span><br><span class="line">		String fileName = <span class="keyword">new</span> URL(remoteFileUrl).getFile();</span><br><span class="line">		System.out.println(<span class="string">"远程文件名称："</span> + fileName);</span><br><span class="line">		fileName = fileName.substring(fileName.lastIndexOf(<span class="string">"/"</span>) + <span class="number">1</span>, fileName.length()).replace(<span class="string">"%20"</span>, <span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"本地文件名称："</span> + fileName);</span><br><span class="line">		<span class="keyword">long</span> fileSize = <span class="keyword">this</span>.getRemoteFileSize(remoteFileUrl);</span><br><span class="line">		<span class="keyword">this</span>.createFile(localPath + System.currentTimeMillis() + fileName, fileSize);</span><br><span class="line">		Long threadCount = (fileSize / unitSize) + (fileSize % unitSize != <span class="number">0</span> ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">long</span> offset = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		CountDownLatch end = <span class="keyword">new</span> CountDownLatch(threadCount.intValue());</span><br><span class="line">		<span class="keyword">if</span> (fileSize &lt;= unitSize) &#123;<span class="comment">// 如果远程文件尺寸小于等于unitSize</span></span><br><span class="line">			DownloadThreadTask downloadThread = <span class="keyword">new</span> DownloadThreadTask(remoteFileUrl, localPath + fileName, offset, fileSize, end, httpClient);</span><br><span class="line">			taskExecutor.execute(downloadThread);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;<span class="comment">// 如果远程文件尺寸大于unitSize</span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; threadCount; i++) &#123;</span><br><span class="line">				DownloadThreadTask downloadThread = <span class="keyword">new</span> DownloadThreadTask(remoteFileUrl, localPath + fileName, offset, unitSize, end, httpClient);</span><br><span class="line">				taskExecutor.execute(downloadThread);</span><br><span class="line">				offset = offset + unitSize;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (fileSize % unitSize != <span class="number">0</span>) &#123;<span class="comment">// 如果不能整除，则需要再创建一个线程下载剩余字节</span></span><br><span class="line">				DownloadThreadTask downloadThread = <span class="keyword">new</span> DownloadThreadTask(remoteFileUrl, localPath + fileName, offset, fileSize - unitSize * (threadCount - <span class="number">1</span>), end, httpClient);</span><br><span class="line">				taskExecutor.execute(downloadThread);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			end.await();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			LOGGER.error(<span class="string">"DownLoadManager exception msg:&#123;&#125;"</span>, ExceptionUtils.getFullStackTrace(e));</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		taskExecutor.shutdown();</span><br><span class="line">		LOGGER.debug(<span class="string">"下载完成！&#123;&#125; "</span>, localPath + fileName);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 获取远程文件尺寸</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">getRemoteFileSize</span><span class="params">(String remoteFileUrl)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="keyword">long</span> fileSize = <span class="number">0</span>;</span><br><span class="line">		HttpURLConnection httpConnection = (HttpURLConnection) <span class="keyword">new</span> URL(remoteFileUrl).openConnection();</span><br><span class="line">		<span class="comment">//使用HEAD方法</span></span><br><span class="line">		httpConnection.setRequestMethod(<span class="string">"HEAD"</span>);</span><br><span class="line">		<span class="keyword">int</span> responseCode = httpConnection.getResponseCode();</span><br><span class="line">		<span class="keyword">if</span> (responseCode &gt;= <span class="number">400</span>) &#123;</span><br><span class="line">			LOGGER.debug(<span class="string">"Web服务器响应错误!"</span>);</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		String sHeader;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;; i++) &#123;</span><br><span class="line">			sHeader = httpConnection.getHeaderFieldKey(i);</span><br><span class="line">			<span class="keyword">if</span> (sHeader != <span class="keyword">null</span> &amp;&amp; sHeader.equals(<span class="string">"Content-Length"</span>)) &#123;</span><br><span class="line">				System.out.println(<span class="string">"文件大小ContentLength:"</span> + httpConnection.getContentLength());</span><br><span class="line">				fileSize = Long.parseLong(httpConnection.getHeaderField(sHeader));</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> fileSize;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 创建指定大小的文件</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">createFile</span><span class="params">(String fileName, <span class="keyword">long</span> fileSize)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		File newFile = <span class="keyword">new</span> File(fileName);</span><br><span class="line">		RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(newFile, <span class="string">"rw"</span>);</span><br><span class="line">		raf.setLength(fileSize);</span><br><span class="line">		raf.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>DownloadThreadTask</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.RandomAccessFile;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.lang.exception.ExceptionUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.ClientProtocolException;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.CloseableHttpResponse;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.HttpGet;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.protocol.BasicHttpContext;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.protocol.HttpContext;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 负责文件下载的类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadThreadTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(DownloadThreadTask.class);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 待下载的文件</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> String url = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 本地文件名</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> String fileName = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 偏移量</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> offset = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 分配给本线程的下载字节数</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> length = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> CountDownLatch end;</span><br><span class="line">	<span class="keyword">private</span> CloseableHttpClient httpClient;</span><br><span class="line">	<span class="keyword">private</span> HttpContext context;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> url</span></span><br><span class="line"><span class="comment">	 *            下载文件地址</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> fileName</span></span><br><span class="line"><span class="comment">	 *            另存文件名</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> offset</span></span><br><span class="line"><span class="comment">	 *            本线程下载偏移量</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> length</span></span><br><span class="line"><span class="comment">	 *            本线程下载长度</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DownloadThreadTask</span><span class="params">(String url, String file, <span class="keyword">long</span> offset, <span class="keyword">long</span> length, CountDownLatch end, CloseableHttpClient httpClient)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.url = url;</span><br><span class="line">		<span class="keyword">this</span>.fileName = file;</span><br><span class="line">		<span class="keyword">this</span>.offset = offset;</span><br><span class="line">		<span class="keyword">this</span>.length = length;</span><br><span class="line">		<span class="keyword">this</span>.end = end;</span><br><span class="line">		<span class="keyword">this</span>.httpClient = httpClient;</span><br><span class="line">		<span class="keyword">this</span>.context = <span class="keyword">new</span> BasicHttpContext();</span><br><span class="line">		LOGGER.debug(<span class="string">"偏移量="</span> + offset + <span class="string">";字节数="</span> + length);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			HttpGet httpGet = <span class="keyword">new</span> HttpGet(<span class="keyword">this</span>.url);</span><br><span class="line">			httpGet.addHeader(<span class="string">"Range"</span>, <span class="string">"bytes="</span> + <span class="keyword">this</span>.offset + <span class="string">"-"</span> + (<span class="keyword">this</span>.offset + <span class="keyword">this</span>.length - <span class="number">1</span>));</span><br><span class="line">			httpGet.addHeader(<span class="string">"Referer"</span>, <span class="string">"http://api.bilibili.com"</span>);</span><br><span class="line">			CloseableHttpResponse response = httpClient.execute(httpGet, context);</span><br><span class="line">			BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(response.getEntity().getContent());</span><br><span class="line">			<span class="keyword">byte</span>[] buff = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">			<span class="keyword">int</span> bytesRead;</span><br><span class="line">			File newFile = <span class="keyword">new</span> File(fileName);</span><br><span class="line">			RandomAccessFile raf = <span class="keyword">new</span> RandomAccessFile(newFile, <span class="string">"rw"</span>);</span><br><span class="line">			<span class="keyword">while</span> ((bytesRead = bis.read(buff, <span class="number">0</span>, buff.length)) != -<span class="number">1</span>) &#123;</span><br><span class="line">				raf.seek(<span class="keyword">this</span>.offset);</span><br><span class="line">				raf.write(buff, <span class="number">0</span>, bytesRead);</span><br><span class="line">				<span class="keyword">this</span>.offset = <span class="keyword">this</span>.offset + bytesRead;</span><br><span class="line">			&#125;</span><br><span class="line">			raf.close();</span><br><span class="line">			bis.close();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (ClientProtocolException e) &#123;</span><br><span class="line">			LOGGER.error(<span class="string">"DownloadThread exception msg:&#123;&#125;"</span>, ExceptionUtils.getFullStackTrace(e));</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			LOGGER.error(<span class="string">"DownloadThread exception msg:&#123;&#125;"</span>, ExceptionUtils.getFullStackTrace(e));</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			end.countDown();</span><br><span class="line">			LOGGER.info(end.getCount() + <span class="string">" is go on!"</span>);</span><br><span class="line">			System.out.println(end.getCount() + <span class="string">" is go on!"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    post.last_updated<time datetime="2018-04-08T13:13:52.000Z" itemprop="dateUpdated">2018-04-08 21:13:52</time>
+</span><br>
+
+
+        
+        欢迎大家在这里留言
+        
+    </div>
+    <footer>
+        <a href="http://blog.yanximin.site">
+            <img src="/img/avatar.jpg" alt="Yan Ximin">
+            Yan Ximin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/09/04/java-download/&title=《使用Java下载大文件》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/09/04/java-download/&title=《使用Java下载大文件》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/09/04/java-download/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Java下载大文件》 — 无名小站&url=http://blog.yanximin.site/2017/09/04/java-download/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/09/04/java-download/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/04/four-post/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">四种POST方式的比较</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/13/interview/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">面试记录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'yAnXImIN',
+            repo: 'comment',
+            oauth: {
+                client_id: 'd12ac644c848fe45ce25',
+                client_secret: '2ee4aedb93051099e9f98294e64026da546d8a58',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/09/04/java-download/&title=《使用Java下载大文件》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/09/04/java-download/&title=《使用Java下载大文件》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/09/04/java-download/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Java下载大文件》 — 无名小站&url=http://blog.yanximin.site/2017/09/04/java-download/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/09/04/java-download/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aOXLDMBAEQP//03TqhNLMgnKVgEbkkiiCzWCNPX5+4nX9Wcm31826+22yywMLAwPjaxnXy3V3TU5N7pN/fvsMGBgYBzCSUJg/bo5P9np9PQYGBkZ7TQ5OPsfAwMD4BCPJLtsXgYGBgZEnsdHt4vJcUpj7SC6OgYHxhYy86v7/f3+kv4GBgfFVjKtcyW9XGpPXaGFgYOzNyAPcrOnYDlXMwBgYGOcw2jJ9El7bAtzspWBgYJzASIpoK4NiK0fJpeMmBgbGRow8WV0pzM0KefkwGQYGxq6M2S3W25n1m86zcAwMjGMYbbqYj2i0Ix3R2AcGBsbWjHa4YX10rC3YFUdPDAyMTRl5UX62/axJ0BbvMDAw9ma8vtFTB8ccPExiMTAwtmYkwa5tFUTDpuWriTquGBgYmzKSklke/laKZfmIWP3fAwMDYwtGnqa2gbs9dK6wMTAwdmW8Dqxt4SyP7k8lsRgYGCcw8oGJ9tHzY996cwIDA+MExkrZK9k4ORomyfOb58HAwDiAMRuzWBnOyNl1lwMDA2NTxixZbUNnfv+6R4mBgbEpY1bKnyWus7R5mH9jYGBsxJiFuTY0z9qTeaMCAwPjBMYsgZw1EmajG3UujoGBsSmjbUw+VZhrj31vzrkYGBgYwZZt8J3tgoGBgfHATZOORMyODqAYGBgHMNaHt9oRsbbBiYGBcTJjdu5qS/xtKS0PuxgYGFszfgEegmqYtXwdzQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

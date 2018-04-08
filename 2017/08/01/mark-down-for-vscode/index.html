@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>vscode中使用markdown | 无名小站 | 欢迎来到这里！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Markdown,vscode">
+    <meta name="description" content="转载自http://www.cnblogs.com/rengised/p/6985031.html   vscode 是微软推出一款轻量级的文本编辑工具，类似于sublime，由于其拥有丰富的插件，安装使用也非常简单，所以深受广大程序员的喜爱。 markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。 印象笔记 是一款具有笔记、写作、">
+<meta name="keywords" content="Markdown,vscode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode中使用markdown">
+<meta property="og:url" content="http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/index.html">
+<meta property="og:site_name" content="无名小站">
+<meta property="og:description" content="转载自http://www.cnblogs.com/rengised/p/6985031.html   vscode 是微软推出一款轻量级的文本编辑工具，类似于sublime，由于其拥有丰富的插件，安装使用也非常简单，所以深受广大程序员的喜爱。 markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。 印象笔记 是一款具有笔记、写作、">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-4.png">
+<meta property="og:updated_time" content="2018-04-08T13:13:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vscode中使用markdown">
+<meta name="twitter:description" content="转载自http://www.cnblogs.com/rengised/p/6985031.html   vscode 是微软推出一款轻量级的文本编辑工具，类似于sublime，由于其拥有丰富的插件，安装使用也非常简单，所以深受广大程序员的喜爱。 markdown 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。 印象笔记 是一款具有笔记、写作、">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="无名小站" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.10">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Ximin</h5>
+          <a href="mailto:yanximin@foxmail.com" title="yanximin@foxmail.com" class="mail">yanximin@foxmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yAnXImIN" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/2716758684" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                我的微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/write/md/md.html" target="_blank" >
+                <i class="icon icon-lg icon-link"></i>
+                写博客
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">vscode中使用markdown</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="global.search_input_hint">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">vscode中使用markdown</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-31T18:58:53.000Z" itemprop="datePublished" class="page-time">
+  2017-08-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+   
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装配置步骤："><span class="post-toc-number">1.</span> <span class="post-toc-text">安装配置步骤：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-准备工作。"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.准备工作。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-安装插件。"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.安装插件。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-EverMonkey配置说明。"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3.EverMonkey配置说明。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-将Preview-设置为github风格"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4.将Preview 设置为github风格</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结："><span class="post-toc-number">2.</span> <span class="post-toc-text">总结：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-mark-down-for-vscode"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">vscode中使用markdown</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-01 02:58:53" datetime="2017-07-31T18:58:53.000Z"  itemprop="datePublished">2017-08-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>转载自<a href="http://www.cnblogs.com/rengised/p/6985031.html" target="_blank" rel="noopener">http://www.cnblogs.com/rengised/p/6985031.html</a></p>
+</blockquote>
+<ul>
+<li><strong>vscode</strong> 是微软推出一款轻量级的文本编辑工具，类似于sublime，由于其拥有丰富的插件，安装使用也非常简单，所以深受广大程序员的喜爱。</li>
+<li><strong>markdown</strong> 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。</li>
+<li><strong>印象笔记</strong> 是一款具有笔记、写作、日程管理等诸多功能为一体的强大、易用型笔记本，拥有非常丰富的插件，其中比较好用的有<strong>印象笔记·剪藏</strong>，<strong>马克飞象</strong>，具体如何使用，请自行查阅相关资料。</li>
+</ul>
+<p>markdown有许多衍生产品，本文主要针对大家比较熟知的<strong>印象笔记</strong>为例，说明如何在vscode中使用<em>markdown语法编辑文章，同时将文章同步到印象笔记中</em>。</p>
+<h2 id="安装配置步骤："><a href="#安装配置步骤：" class="headerlink" title="安装配置步骤："></a>安装配置步骤：</h2><h3 id="1-准备工作。"><a href="#1-准备工作。" class="headerlink" title="1.准备工作。"></a>1.准备工作。</h3><p>本机已安装vscode、印象笔记或者国际版Evernote，如果没有安装请自行安装以上软件。同时，您已经注册了印象笔记或者国际版Evernote的账号。</p>
+<h3 id="2-安装插件。"><a href="#2-安装插件。" class="headerlink" title="2.安装插件。"></a>2.安装插件。</h3><p>在vscode中安装<strong>EverMonkey</strong>，<strong>Auto-Open Markdown Preview</strong>。</p>
+<blockquote>
+<p>vscode安装插件可以从左侧的工具栏中选择<code>Extensions</code>，或者使用快捷键<code>Ctrl+Shift+X</code>。EverMonkey插件的作用是将vscode中的文件同步到印象笔记或者国际版Evernote。Auto-Open Markdown Preview插件的作用是在vscode中，当你打开*.md格式的文件时，自动开启预览，方便你在编辑的过程中实时的看到结果。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-1.png" alt="Auto-Open Markdown Preview 预览效果" title="">
+                </div>
+                <div class="image-caption">Auto-Open Markdown Preview 预览效果</div>
+            </figure></p>
+</blockquote>
+<h3 id="3-EverMonkey配置说明。"><a href="#3-EverMonkey配置说明。" class="headerlink" title="3.EverMonkey配置说明。"></a>3.EverMonkey配置说明。</h3><p>EverMonkey插件是本文的<strong>重点</strong>，该插件主要负责将vscode中的文章同步到印象笔记。在vscode中安装完EverMonkey插件后，我们安装官方说明，来一步一步的配置。</p>
+<ul>
+<li>a.获取token、noteStoreUrl。快捷键<code>Ctrl+Shift+P</code>，打开command，输入<code>ever token</code>，这里我使用的是国际版Evernote，所以我选择的是International。</li>
+<li>b.输入你的印象笔记的账号密码，然后授权，就可以看到<code>token、noteStoreUrl</code>。</li>
+<li>c.将 <code>token、noteStoreUrl</code>配置到vscode的用户设置里面。步骤为<code>File --&gt; Preferences --&gt; Settings</code>，左边是系统默认设置，右边是用户自定义设置，在右侧配置token、noteStoreUrl，按照标准的json格式输入，key和value都需要加英文的双引号。<blockquote>
+<p>evermonkey.token: your developer token<br><br>evermonkey.noteStoreUrl: your API url</p>
+</blockquote>
+</li>
+<li>d.完成以上步骤，基本就算ok了，建议重启一下vscode，然后输入快捷键<code>Ctrl+Shift+P</code>打开command,输入<code>ever sync</code>，左下角显示synchronize successfully!(第一次同步可能有点慢，请耐心等待一下)，代表EverMonkey插件已经和印象笔记通信成功！如果报错，请去<a href="https://github.com/michalyao/evermonkey/issues" target="_blank" rel="noopener">git issue</a> 上面先找是否已经有人提过该问题，如果没有，你可以开个issue给作者。一般你遇到的问题，很多人也遇到了，请在close 里面仔细查找。</li>
+<li>e.上传vscode本地文件。新建本地文件，后缀为.md。在文件内容的最上方输入一下内容。<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">  title: 文件名称</span><br><span class="line">  tags: 标签（多个标签用逗号分隔）</span><br><span class="line">  notebook: （所属的目录）</span><br><span class="line">---</span><br><span class="line"><span class="comment">//下面是正文内容</span></span><br><span class="line">...</span><br><span class="line">  # xxx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>完成文章内容编写之后，输入<code>Ctrl+Shift+P</code>打开command,输入<code>ever publish</code>,提示成功后，就可以在印象笔记客户端看到文章加入到了指定的目录里（如果客户端没有自动更新，请尝试手动更新）,快速提交文章的快捷键是<code>Alt+P</code>。</p>
+<blockquote>
+<p>重要提示：如果报<code>Evernote Error: 5 - Note.title</code>，错误（这个错误坑了好一会）。说明是换行符有问题，请将vscode右下角的换行符从<code>CRLF</code>切换成<code>LF</code>,然后再次执行<code>ever publish</code>，就会有<code>blogs&gt;&gt;vscode中使用印象笔记 created successfully.</code>提示。如果还有错误，请到<a href="https://github.com/michalyao/evermonkey/issues" target="_blank" rel="noopener">git issue</a>查找相关问题。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-3.png" alt="Auto-Open Markdown Preview 预览效果" title="">
+                </div>
+                <div class="image-caption">Auto-Open Markdown Preview 预览效果</div>
+            </figure></p>
+</blockquote>
+<h3 id="4-将Preview-设置为github风格"><a href="#4-将Preview-设置为github风格" class="headerlink" title="4.将Preview 设置为github风格"></a>4.将Preview 设置为github风格</h3><p>vscode 默认的将Preview预览风格是黑黑的，如上面的截图。如果想更改为github风格的样式，请执行如下步骤：</p>
+<ul>
+<li>a.下载github风格的<a href="https://github.com/raycon/vscode-markdown-css/blob/master/markdown-github.css" target="_blank" rel="noopener">css</a>到本地，并放置相应的目录，本文推荐放置在vscode安装目录里，如<code>D:/Program Files (x86)/Microsoft VS Code/resources/app/extensions/markdown/media/</code>。</li>
+<li>b.设置用户配置文件,<code>File --&gt; Preferences --&gt; Settings</code>,添加如下配置信息，请填入你下载的css文件的<strong>路径</strong>和<strong>名称</strong>（我这里的文件名叫userStyle.css）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;markdown.styles&quot;: [</span><br><span class="line">    &quot;file:///D:/Program Files (x86)/Microsoft VS Code/resources/app/extensions/markdown/media/userStyle.css&quot;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-4.png" alt="github 样式效果图" title="">
+                </div>
+                <div class="image-caption">github 样式效果图</div>
+            </figure>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>马克飞象是一款非常好用的印象笔记插件，完全可以胜任以上所有功能，而且界面非常华丽，使用也很简单，但是，<strong>要收费。。。</strong> 之前用sublime的时候，就使用过相关插件，在sublime 里面实现编辑文章，同步到印象笔记。现在使用vscode比较多，就试试看有没有相关的功能，结果是肯定的（vscode这么优秀，怎能没有呢）。所以就尝试了一下，但是，遇到了个坑，就是<code>Evernote Error: 5 - Note.title</code>，查了半天说是<code>CRLF</code>切换成<code>LF</code>，我也确实在用户配置里面设置了，但是，就是不生效。最后，无意间发现，右下角显示的还是<code>CRLF</code>,然后尝试着点了一下，竟然可以改为<code>LF</code>,再然后呢，就没有然后了，OK了。<br></p>
+<p>虽然费了一大会功夫，但是还是有收获的，就是，这个不要钱。。。<br></p>
+<p>还有一个功能是马克飞象、印象笔记做不到的，印象笔记的内容保存在哪里我们并不知道，如果你想将这些内容同步到git上面，貌似是没有办法的。而使用vscode写*.md，文件内容都是在你指定的目录中，你可以随时将这些文件add,commit,push到git上面，是不是很方便。。。</p>
+<blockquote>
+<p>ps:这篇文章我就是用上述方法编辑的，非常方便，而且我直接push到我的<a href="https://github.com/chenkang084/notes/blob/master/blogs/vscode%E4%B8%AD%E4%BD%BF%E7%94%A8markdown.md" target="_blank" rel="noopener">git仓库了</a>。在git页面，直接复制该dom的html源码，贴到博客园就可以自动呈现格式化后的样子（虽然代码块、区域文本显示不太正常），还是很方便。<br><br>如果照片加载不全或者失败，可以直接访问本文<a href="https://github.com/chenkang084/notes/blob/master/blogs/vscode%E4%B8%AD%E4%BD%BF%E7%94%A8markdown.md" target="_blank" rel="noopener">git页面</a>。</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    post.last_updated<time datetime="2018-04-08T13:13:50.000Z" itemprop="dateUpdated">2018-04-08 21:13:50</time>
+</span><br>
+
+
+        
+        欢迎大家在这里留言
+        
+    </div>
+    <footer>
+        <a href="http://blog.yanximin.site">
+            <img src="/img/avatar.jpg" alt="Yan Ximin">
+            Yan Ximin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/">vscode</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/&title=《vscode中使用markdown》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/&title=《vscode中使用markdown》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vscode中使用markdown》 — 无名小站&url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/08/04/reflect-1/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java 反射机制初探</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/24/HowToBuildAWebSite/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">我是如何搭建起这个网站的</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'yAnXImIN',
+            repo: 'comment',
+            oauth: {
+                client_id: 'd12ac644c848fe45ce25',
+                client_secret: '2ee4aedb93051099e9f98294e64026da546d8a58',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>footer.license</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Ximin &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/&title=《vscode中使用markdown》 — 无名小站&pic=http://blog.yanximin.site/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/&title=《vscode中使用markdown》 — 无名小站&source=随便记录点东西" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vscode中使用markdown》 — 无名小站&url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/&via=http://blog.yanximin.site" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.yanximin.site/2017/08/01/mark-down-for-vscode/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKklEQVR42u3ay27CMBAF0P7/T9MtUgXcOw6VYh+vKkiITxZTz+PnJ16Pp/X3k+fPX33795rnK1895eKFgYFxW8bj7Xq/6fbBK7//4aVgYGAcwEhC4fvr3wfQ9q58bxgYGBj55vKNvv8EAwMD41rG+sEx+WUMDAyMPInNg+lK2e7ruTgGBsYNGfnj///vr/Q3MDAwbsV4lKttPbYh8jFaGBgYezPyANcOTORbzJ/y4UoMDIxNGUnKmo92tcE6Kc8l4R4DA2NvRt5KbA9zyS+vtEij/xsYGBhbMNrUtG035sE6T4wxMDBOY7THr3zTs+vzEZAPnVgMDIzDGG2TYNZ5nL0aDAyMcxjtuEM+RpaH4HZQLCq6YWBgbMHIN9EGvry1MHv3RQsTAwNjO0aeOs7alu2hsC60YWBgbMqYFetXDoX50+vEFQMDY1NGe/hLAvRKS3I4bIGBgXEY46pkNT84tm0ADAyMcxiz1Y5TfC+JxcDAOIeRNyxnyKQZkBf1oh4sBgbGpow8KZ3B2vJcG9AxMDDOYeQBN09T83bmbPACAwPjTEaSUs6GLdYz6Zf3YmBgbMqYlfLXSclLLFoUGBgYWzNmYW5lo3l7sm0tYGBg7M2YJZCzMtns0BkFXAwMjAMYeeBrRyLaUYy8RYqBgYGRH9FmZbW29H9xwMXAwDiAMdtu3s7Mj48YGBjnML49vLU+cHZZuQ0DA+OGjDZ1bEPtLMW96i4MDIybM34BGJ9gvkhNJrUAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.10"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.10" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

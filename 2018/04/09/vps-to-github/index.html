@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="无名小站">
 <meta property="og:description" content="本博客使用hexo框架，之前一直把博客的服务器挂载在搬瓦工VPS上，通过ftp将写好的博客上传到VPS中，在用nodejs在VPS上编译，最后将静态的页面托管到Nginx上。最近发现VPS的服务马上就要到期了，怕给忘记续费，导致博客内容被清除。再者由于在服务器上操作过于繁琐，有了将博客迁移到github上的打算 迁移的过程主要分成这么几步 将VPS上数据下载到本地的电脑中由于使用了hexo框架，">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-04-09T13:56:30.000Z">
+<meta property="og:updated_time" content="2018-04-09T13:57:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本博客由VPS迁移至Github">
 <meta name="twitter:description" content="本博客使用hexo框架，之前一直把博客的服务器挂载在搬瓦工VPS上，通过ftp将写好的博客上传到VPS中，在用nodejs在VPS上编译，最后将静态的页面托管到Nginx上。最近发现VPS的服务马上就要到期了，怕给忘记续费，导致博客内容被清除。再者由于在服务器上操作过于繁琐，有了将博客迁移到github上的打算 迁移的过程主要分成这么几步 将VPS上数据下载到本地的电脑中由于使用了hexo框架，">
@@ -153,7 +153,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#将VPS上数据下载到本地的电脑中"><span class="post-toc-number">1.</span> <span class="post-toc-text">将VPS上数据下载到本地的电脑中</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#本地编译网站静态内容"><span class="post-toc-number">2.</span> <span class="post-toc-text">本地编译网站静态内容</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#将VPS上数据下载到本地的电脑中"><span class="post-toc-number">1.</span> <span class="post-toc-text">将VPS上数据下载到本地的电脑中</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#本地编译网站静态内容"><span class="post-toc-number">2.</span> <span class="post-toc-text">本地编译网站静态内容</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#将静态内容上传到Github上"><span class="post-toc-number">3.</span> <span class="post-toc-text">将静态内容上传到Github上</span></a></li></ol>
         </nav>
     </aside>
     
@@ -183,8 +183,7 @@
 <p>Hexo的配置文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
 <p>indigo的配置文档：<a href="https://github.com/yscoder/hexo-theme-indigo/wiki" target="_blank" rel="noopener">https://github.com/yscoder/hexo-theme-indigo/wiki</a></p>
 <p>按照文档步骤来就行了，千万不要跳过一些步骤，比方说可能会忘记敲安装nodejs的插件的命令。</p>
-<p># 将静态内容上传到Github上</p>
-<p>在Github上创建一个项目，项目的名称为【youname】.github.io，注意一定要已github.io结尾。<br>在hexo的配置文件中，最后增加以下内容，就能将静态文件直接部署到Github上了。其中type和repo必填，其他两项选填。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br><span class="line">  message: [message]</span><br></pre></td></tr></table></figure></p>
+<h1 id="将静态内容上传到Github上"><a href="#将静态内容上传到Github上" class="headerlink" title="将静态内容上传到Github上"></a>将静态内容上传到Github上</h1><p>在Github上创建一个项目，项目的名称为【youname】.github.io，注意一定要已github.io结尾。<br>在hexo的配置文件中，最后增加以下内容，就能将静态文件直接部署到Github上了。其中type和repo必填，其他两项选填。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br><span class="line">  message: [message]</span><br></pre></td></tr></table></figure></p>
 <p>输入<code>$ npm install hexo-deployer-git --save</code>安装hexo-deployer-git。<br>最后使用<code>hexo d</code>就可以将内容自动添加到Github上。</p>
 
         </div>
@@ -193,7 +192,7 @@
     <div class="content">
         
 <span class="post-time">
-    post.last_updated<time datetime="2018-04-09T13:56:30.000Z" itemprop="dateUpdated">2018-04-09 21:56:30</time>
+    post.last_updated<time datetime="2018-04-09T13:57:57.000Z" itemprop="dateUpdated">2018-04-09 21:57:57</time>
 </span><br>
 
 

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.yanximin.site/"/>
-  <updated>2018-04-09T13:57:57.000Z</updated>
+  <updated>2018-04-09T14:04:08.000Z</updated>
   <id>http://blog.yanximin.site/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.yanximin.site/2018/04/09/vps-to-github/"/>
     <id>http://blog.yanximin.site/2018/04/09/vps-to-github/</id>
     <published>2018-04-09T13:28:41.000Z</published>
-    <updated>2018-04-09T13:57:57.000Z</updated>
+    <updated>2018-04-09T14:04:08.000Z</updated>
     
     <content type="html"><![CDATA[<p>本博客使用hexo框架，之前一直把博客的服务器挂载在搬瓦工VPS上，通过ftp将写好的博客上传到VPS中，在用nodejs在VPS上编译，最后将静态的页面托管到Nginx上。<br>最近发现VPS的服务马上就要到期了，怕给忘记续费，导致博客内容被清除。<br>再者由于在服务器上操作过于繁琐，有了将博客迁移到github上的打算</p><p>迁移的过程主要分成这么几步</p><h1 id="将VPS上数据下载到本地的电脑中"><a href="#将VPS上数据下载到本地的电脑中" class="headerlink" title="将VPS上数据下载到本地的电脑中"></a>将VPS上数据下载到本地的电脑中</h1><p>由于使用了hexo框架，在使用nodejs编译的过程中会产生很多的临时文件。<br>其实真正有用的只有三个文件夹（文件）：<code>_config.yml</code>，<code>source</code>，<code>themes</code>。<br>其中<code>_config.yml</code>表示了网站的配置内容，比如标题、所有者等等；<br>而<code>source</code>文件夹则保存了博客的markdown源文本；<code>themes</code>则保存了网站的主题。</p><h1 id="本地编译网站静态内容"><a href="#本地编译网站静态内容" class="headerlink" title="本地编译网站静态内容"></a>本地编译网站静态内容</h1><p>主要重新按照Hexo和indigo的配置文档走了一遍：</p><p>Hexo的配置文档：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p><p>indigo的配置文档：<a href="https://github.com/yscoder/hexo-theme-indigo/wiki" target="_blank" rel="noopener">https://github.com/yscoder/hexo-theme-indigo/wiki</a></p><p>按照文档步骤来就行了，千万不要跳过一些步骤，比方说可能会忘记敲安装nodejs的插件的命令。</p><h1 id="将静态内容上传到Github上"><a href="#将静态内容上传到Github上" class="headerlink" title="将静态内容上传到Github上"></a>将静态内容上传到Github上</h1><p>在Github上创建一个项目，项目的名称为【youname】.github.io，注意一定要已github.io结尾。<br>在hexo的配置文件中，最后增加以下内容，就能将静态文件直接部署到Github上了。其中type和repo必填，其他两项选填。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br><span class="line">  message: [message]</span><br></pre></td></tr></table></figure></p><p>输入<code>$ npm install hexo-deployer-git --save</code>安装hexo-deployer-git。<br>最后使用<code>hexo d</code>就可以将内容自动添加到Github上。</p>]]></content>
     
@@ -34,6 +34,10 @@
     
     </summary>
     
+    
+      <category term="网站维护" scheme="http://blog.yanximin.site/tags/%E7%BD%91%E7%AB%99%E7%BB%B4%E6%8A%A4/"/>
+    
+      <category term="hexo" scheme="http://blog.yanximin.site/tags/hexo/"/>
     
   </entry>
   

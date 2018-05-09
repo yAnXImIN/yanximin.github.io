@@ -147,6 +147,55 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-database-recovery"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-09-05 04:51:50" datetime="2017-09-04T20:51:50.000Z"  itemprop="datePublished">2017-09-05</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/09/05/database-recovery/">MySql数据库恢复</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        今天网站出现了数据丢失的问题, 主要原因在于网络不稳定导致.
+辛亏之前每天都有在每天晚上十二点备份数据库. 恢复数据库的方法很简单.
+找到相应的数据库备份文件, 比如backupfile.sql.gz
+在shell中输入以下命令1gunzip &lt; backupfile.sql.gz | mysql -u username -p password databasename
+其中gunzi...
+    
+
+        <a href="/2017/09/05/database-recovery/" class="post-more waves-effect waves-button">
+            post.continue_reading
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网站维护/">网站维护</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-four-post"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -590,67 +639,6 @@ WebMagic的总体架构如下图所示
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-problem-of-server"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-06-22 09:06:34" datetime="2017-06-22T01:06:34.000Z"  itemprop="datePublished">2017-06-22</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/22/problem-of-server/">服务器近阶段遇到的问题和解决方法</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        近阶段，我们服务器一直处于不稳定的状态。主要现象有：
-
-网站页面无法打开。
-静态图片无法打开
-一般为内存溢出或者泄露
-修改的方向为Java或者Tomcat方面
-
-
-网站应用无法正常连接数据库，进而无法进行登录等操作。
-网站应用无法使用MySQL数据库
-一般为连接池资源耗尽
-少数情况下为数据库账号密码出现偏差
-
-
-数据库连接池频繁出现死锁问题。
-C3P0和Spring可能存在问题
-对其进行配置...
-    
-
-        <a href="/2017/06/22/problem-of-server/" class="post-more waves-effect waves-button">
-            post.continue_reading
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
 
     </div>
     
